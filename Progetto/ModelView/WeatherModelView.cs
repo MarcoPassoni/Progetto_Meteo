@@ -11,10 +11,8 @@ using System.Threading.Tasks.Dataflow;
 using System.Web;
 using System.Text.Json;
 using Progetto.View;
-using Org.Xml.Sax.Helpers;
 using System.Collections.ObjectModel;
-using Xamarin.Google.Crypto.Tink.Mac;
-using Android.Content.Res;
+
 //https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=temperature_2m,temperature_975hPa,
 //cloudcover_975hPa,windspeed_975hPa&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_probability_max&timezone=auto
 namespace Progetto.ModelView

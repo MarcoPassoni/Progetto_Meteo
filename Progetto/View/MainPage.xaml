@@ -8,6 +8,7 @@
     <ContentPage.BindingContext>
         <ViewModel:WeatherModelView/>
     </ContentPage.BindingContext>
+    
     <VerticalStackLayout BackgroundColor="Cyan">
         <Label x:Name="label_titolo"  Text="METEO" FontSize="30" Margin="130,0,0,0"/>
         <SearchBar HeightRequest="30" WidthRequest="300" BackgroundColor="Blue" Text="{Binding Text}" SearchCommand="{Binding SearchCityCommand}" Placeholder="inserisci il comune"/>
