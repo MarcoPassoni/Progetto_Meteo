@@ -63,6 +63,9 @@
 	  <MauiXaml Update="View\DefaultPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="View\GoToDetails.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="View\home.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

@@ -11,7 +11,14 @@
     <VerticalStackLayout BackgroundColor="Cyan">
         <Label x:Name="label_titolo"  Text="METEO" FontSize="30" Margin="130,0,0,0"/>
         <SearchBar HeightRequest="30" WidthRequest="300" BackgroundColor="Blue" Text="{Binding Text}" SearchCommand="{Binding SearchCityCommand}" Placeholder="inserisci il comune"/>
-        <Label Text="{Binding Coords}" Margin="130,0,0,0"/>
+        <Label Text="{Binding Location.Name}" Margin="130,0,0,0"/>
         <Button Text="Metti nei preferiti" Command="{Binding PlaceInPreferencesCommand}"/>
+        <CollectionView ItemsSource="{Binding PreferencesCities}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="Model:Locations">
+                    <Label Text="{Binding Name, StringFormat='città: {0:F0}'}" TextColor="Black"/>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </VerticalStackLayout>
 </ContentPage>

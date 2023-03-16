@@ -3,12 +3,32 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Progetto.View.DefaultPage"
              xmlns:ViewModel="clr-namespace:Progetto.ModelView"
-             xmlns:Model="clr-namespace:Progetto.Model">
+             xmlns:Model="clr-namespace:Progetto.Model"
+             BackgroundImageSource="sunset.jpg">
     <ContentPage.BindingContext>
         <ViewModel:WeatherModelView/>
     </ContentPage.BindingContext>
+
+    <CollectionView ItemsSource="{Binding PreferencesCities}">
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="Model:Locations">
+                <Frame>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer
+                        Command="{Binding Source={RelativeSource AncestorType={x:Type ViewModel:WeatherModelView}}, Path=GoToDetailsCommand}"
+                        CommandParameter="{Binding .}"/>
+                    </Frame.GestureRecognizers>
+                    <Grid Padding="0" ColumnDefinitions="40,*">
+                        <VerticalStackLayout
+                                    Grid.Column="1"
+                                    VerticalOptions="Center"
+                                    Padding="10">
+                            <Label Text="{Binding Name, StringFormat='città: {0:F0}'}" TextColor="Black" FontSize="20"/>
+                        </VerticalStackLayout>
+                    </Grid>
+                </Frame>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
     
-    <VerticalStackLayout>
-        <Label x:Name="labelProva" Text="{Binding Prova}"/>
-    </VerticalStackLayout>
 </ContentPage>

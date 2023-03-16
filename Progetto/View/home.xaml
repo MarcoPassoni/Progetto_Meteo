@@ -3,7 +3,8 @@
        xmlns:local="clr-namespace:Progetto.View"
         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
         x:Class="Progetto.View.home"
-        Title="home">
+        Title="home"
+       BackgroundImageSource="sunset.jpg">
     <TabBar>
         <Tab Title="Home">
             <ShellContent ContentTemplate="{DataTemplate local:DefaultPage}"/>
