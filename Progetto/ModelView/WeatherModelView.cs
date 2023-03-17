@@ -13,8 +13,7 @@ using System.Text.Json;
 using Progetto.View;
 using System.Collections.ObjectModel;
 
-//https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=temperature_2m,temperature_975hPa,
-//cloudcover_975hPa,windspeed_975hPa&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_probability_max&timezone=auto
+//https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=temperature_2m,temperature_975hPa,cloudcover_975hPa,windspeed_975hPa&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_probability_max&timezone=auto
 namespace Progetto.ModelView
 {
     public partial class WeatherModelView : ObservableObject
@@ -22,6 +21,9 @@ namespace Progetto.ModelView
         static public HttpClient? client = new HttpClient();
 
         public ObservableCollection<Locations> PreferencesCities { get; set; } = new ObservableCollection<Locations>();
+
+        [ObservableProperty]
+        public string città;
 
         [ObservableProperty]
         public string text;
@@ -88,6 +90,7 @@ namespace Progetto.ModelView
                 if (geocodingResult != null)
                 {
                     Location = new Locations() { Name = geocodingResult.Results[0].Name, Latitude = geocodingResult.Results[0].Latitude, Longitude = geocodingResult.Results[0].Longitude};
+                    Città = Location.Name;
                 }
             }
         }

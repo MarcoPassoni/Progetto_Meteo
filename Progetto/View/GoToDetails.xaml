@@ -9,7 +9,9 @@
     <ContentPage.BindingContext>
         <ViewModel:WeatherModelView/>
     </ContentPage.BindingContext>
+    
+    
     <VerticalStackLayout>
-        <Label x:Name="label_comune"  Text="{Binding Location.Name}" FontSize="30"/>
+        <Label Text="{Binding Location.Name}" FontSize="30"/>
     </VerticalStackLayout>
 </ContentPage>
