@@ -1,33 +1,40 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using Progetto.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Net.Http.Json;
 
 namespace Progetto.ModelView
 {
     public partial class ModelViewDetails : ObservableObject
     {
-        [ObservableProperty]
-        Locations location;
+        private static HttpClient? client = new HttpClient();
 
         [ObservableProperty]
-        public string data1;
+        public Locations location;
 
         [ObservableProperty]
-        public string tempMinima;
+        public CurrentWeather current;
 
-        [ObservableProperty]
-        public string tempMaxima;
-
-        public ModelViewDetails(Locations location, string data1, string tempMin, string tempMax)
+        public ModelViewDetails(Locations location)
         {
             Location = location;
-            Data1 = data1;
-            TempMinima = tempMin;
-            TempMaxima = tempMax;
+            SearchWeather(location);
+        }
+
+
+        private async void SearchWeather(Locations CurrentLocation)
+        {
+            //DateTime data = DateTime.Now;
+            //https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=temperature_2m,temperature_975hPa,cloudcover_975hPa,windspeed_975hPa&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_probability_max&timezone=auto
+            FormattableString tempUrl = $"https://api.open-meteo.com/v1/forecast?latitude={CurrentLocation.Latitude}&longitude={CurrentLocation.Longitude}&hourly=temperature_2m,temperature_975hPa,cloudcover_975hPa,windspeed_975hPa&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_probability_max&timezone=auto&current_weather=true";
+            var url = FormattableString.Invariant(tempUrl);
+
+            var response = await client.GetAsync(url);
+            if (!response.IsSuccessStatusCode)
+            {
+                return;
+            }
+            OpenMeteoForecast? forecast = await response.Content.ReadFromJsonAsync<OpenMeteoForecast>();
+            if (forecast != null) Current = forecast.CurrentWeather;
         }
     }
 }

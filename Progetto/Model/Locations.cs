@@ -11,6 +11,15 @@ namespace Progetto.Model
         public string Name { get; set; }
         public double? Latitude { get; set; }
         public double? Longitude { get; set; }
+
+
+        public Locations(string name, double? lat, double? lon)
+        {
+            Name = name;
+            Latitude = lat;
+            Longitude = lon;
+        }
+
         public override bool Equals(object obj)
         {
             if (obj == null) return false;

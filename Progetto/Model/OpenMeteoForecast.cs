@@ -7,10 +7,28 @@ using System.Threading.Tasks;
 
 namespace Progetto.Model
 {
+    public class CurrentWeather
+    {
+        [JsonPropertyName("temperature")]
+        public int? Temperature { get; set; }
+
+        [JsonPropertyName("windspeed")]
+        public double? Windspeed { get; set; }
+
+        [JsonPropertyName("winddirection")]
+        public int? Winddirection { get; set; }
+
+        [JsonPropertyName("weathercode")]
+        public int? Weathercode { get; set; }
+
+        [JsonPropertyName("time")]
+        public string Time { get; set; }
+    }
+
     public class Daily
     {
         [JsonPropertyName("time")]
-        public List<int> Time { get; set; }
+        public List<string> Time { get; set; }
 
         [JsonPropertyName("temperature_2m_max")]
         public List<double?> Temperature2mMax { get; set; }
@@ -19,13 +37,13 @@ namespace Progetto.Model
         public List<double?> Temperature2mMin { get; set; }
 
         [JsonPropertyName("sunrise")]
-        public List<int> Sunrise { get; set; }
+        public List<string> Sunrise { get; set; }
 
         [JsonPropertyName("sunset")]
-        public List<int> Sunset { get; set; }
+        public List<string> Sunset { get; set; }
 
-        [JsonPropertyName("windspeed_10m_max")]
-        public List<double?> Windspeed10mMax { get; set; }
+        [JsonPropertyName("precipitation_probability_max")]
+        public List<int?> PrecipitationProbabilityMax { get; set; }
     }
 
     public class DailyUnits
@@ -45,29 +63,26 @@ namespace Progetto.Model
         [JsonPropertyName("sunset")]
         public string Sunset { get; set; }
 
-        [JsonPropertyName("windspeed_10m_max")]
-        public string Windspeed10mMax { get; set; }
+        [JsonPropertyName("precipitation_probability_max")]
+        public string PrecipitationProbabilityMax { get; set; }
     }
 
     public class Hourly
     {
         [JsonPropertyName("time")]
-        public List<int> Time { get; set; }
+        public List<string> Time { get; set; }
 
         [JsonPropertyName("temperature_2m")]
         public List<double?> Temperature2m { get; set; }
 
-        [JsonPropertyName("temperature_1000hPa")]
-        public List<double?> Temperature1000hPa { get; set; }
+        [JsonPropertyName("temperature_975hPa")]
+        public List<double?> Temperature975hPa { get; set; }
 
-        [JsonPropertyName("cloudcover_1000hPa")]
-        public List<int?> Cloudcover1000hPa { get; set; }
+        [JsonPropertyName("cloudcover_975hPa")]
+        public List<int?> Cloudcover975hPa { get; set; }
 
-        [JsonPropertyName("windspeed_1000hPa")]
-        public List<double?> Windspeed1000hPa { get; set; }
-
-        [JsonPropertyName("winddirection_1000hPa")]
-        public List<int?> Winddirection1000hPa { get; set; }
+        [JsonPropertyName("windspeed_975hPa")]
+        public List<double?> Windspeed975hPa { get; set; }
     }
 
     public class HourlyUnits
@@ -78,17 +93,14 @@ namespace Progetto.Model
         [JsonPropertyName("temperature_2m")]
         public string Temperature2m { get; set; }
 
-        [JsonPropertyName("temperature_1000hPa")]
-        public string Temperature1000hPa { get; set; }
+        [JsonPropertyName("temperature_975hPa")]
+        public string Temperature975hPa { get; set; }
 
-        [JsonPropertyName("cloudcover_1000hPa")]
-        public string Cloudcover1000hPa { get; set; }
+        [JsonPropertyName("cloudcover_975hPa")]
+        public string Cloudcover975hPa { get; set; }
 
-        [JsonPropertyName("windspeed_1000hPa")]
-        public string Windspeed1000hPa { get; set; }
-
-        [JsonPropertyName("winddirection_1000hPa")]
-        public string Winddirection1000hPa { get; set; }
+        [JsonPropertyName("windspeed_975hPa")]
+        public string Windspeed975hPa { get; set; }
     }
 
     public class OpenMeteoForecast
@@ -112,7 +124,10 @@ namespace Progetto.Model
         public string TimezoneAbbreviation { get; set; }
 
         [JsonPropertyName("elevation")]
-        public double? Elevation { get; set; }
+        public int? Elevation { get; set; }
+
+        [JsonPropertyName("current_weather")]
+        public CurrentWeather CurrentWeather { get; set; }
 
         [JsonPropertyName("hourly_units")]
         public HourlyUnits HourlyUnits { get; set; }

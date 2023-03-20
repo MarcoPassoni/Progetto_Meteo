@@ -6,12 +6,12 @@ namespace Progetto.View;
 
 public partial class GoToDetails : ContentPage
 {
-	public GoToDetails(Locations loc, string data, string min, string max)
+	public GoToDetails(Locations loc)
 	{
 		InitializeComponent();
         NavigationPage.SetHasNavigationBar(this, false);
 
 
-        BindingContext = new ModelViewDetails(loc, data, min, max);
+        BindingContext = new ModelViewDetails(loc);
     }
 }
