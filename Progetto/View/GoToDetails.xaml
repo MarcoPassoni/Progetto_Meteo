@@ -4,7 +4,8 @@
              x:Class="Progetto.View.GoToDetails"
              Title="GoToDetails"
              xmlns:ViewModel="clr-namespace:Progetto.ModelView"
-             xmlns:Model="clr-namespace:Progetto.Model">
+             xmlns:Model="clr-namespace:Progetto.Model"
+             x:DataType="ViewModel:ModelViewDetails">
 
     <ContentPage.BindingContext>
         <ViewModel:WeatherModelView/>
@@ -12,6 +13,8 @@
     
     
     <VerticalStackLayout>
-        <Label Text="{Binding Location.Name}" FontSize="30"/>
+        <Label Text="{Binding Location.Name, StringFormat='Città: {0}'}" FontSize="20"/>
+        <Label Text="{Binding Location.Latitude, StringFormat='Latitudine: {0}'}" FontSize="20"/>
+        <Label Text="{Binding Location.Longitude, StringFormat='Longitudine: {0}'}" FontSize="20"/>
     </VerticalStackLayout>
 </ContentPage>

@@ -1,7 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Progetto.Model;
-using Microsoft.Maui.Devices.Sensors;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +11,7 @@ using System.Web;
 using System.Text.Json;
 using Progetto.View;
 using System.Collections.ObjectModel;
+using System.Security.Cryptography;
 
 //https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=temperature_2m,temperature_975hPa,cloudcover_975hPa,windspeed_975hPa&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_probability_max&timezone=auto
 namespace Progetto.ModelView
@@ -24,6 +24,9 @@ namespace Progetto.ModelView
 
         [ObservableProperty]
         public string città;
+
+        [ObservableProperty]
+        public Locations currentLocation;
 
         [ObservableProperty]
         public string text;
@@ -50,15 +53,20 @@ namespace Progetto.ModelView
             }
         }
         [RelayCommand]
-        async Task GoToDetails()
+        async Task GoToDetails(object loc) //passare il nome della città
         {
-            await App.Current.MainPage.Navigation.PushAsync(new GoToDetails());
+            if (loc == null || loc == default)
+            {
+                return;
+            }
+            currentLocation = (Locations)loc;
+            await App.Current.MainPage.Navigation.PushAsync(new GoToDetails((Locations)loc));
         }
 
         [RelayCommand]
         public async void SearchCity()
         {
-            if (Text == null)
+            if (Text == null || Text == string.Empty)
             {
                 return;
             }
