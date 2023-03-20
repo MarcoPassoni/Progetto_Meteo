@@ -21,6 +21,6 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-        <Button Text="vai ai dettagli" Command="{Binding GoToDetailsCommand}"/>
+        <Button Text="vai ai dettagli" Command="{Binding GoToDetailsWithoutObjectCommand}"/>
     </VerticalStackLayout>
 </ContentPage>

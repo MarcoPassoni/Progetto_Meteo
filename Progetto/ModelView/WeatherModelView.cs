@@ -72,6 +72,13 @@ namespace Progetto.ModelView
         }
 
         [RelayCommand]
+        async Task GoToDetailsWithoutObject()
+        {
+            SearchWeather(Location);
+            await App.Current.MainPage.Navigation.PushAsync(new GoToDetails(Location, data1, tempMinima, tempMaxima));
+        }
+
+        [RelayCommand]
         public async void SearchCity()
         {
             if (Text == null || Text == string.Empty)
@@ -113,9 +120,9 @@ namespace Progetto.ModelView
                     for (int i = 0; i < forecast.Daily.Temperature2mMin.Count; i++)
                     {
 
-                        data1 = "Data =" + UnixTimeStampToDateTime(forecast.Daily.Time[i]);
-                        tempMinima = "Temp minima =" + forecast.Daily.Temperature2mMin[i].GetValueOrDefault();
-                        tempMaxima = "Temp Massima =" + forecast.Daily.Temperature2mMax[i].GetValueOrDefault();
+                        data1 = UnixTimeStampToDateTime(forecast.Daily.Time[i]).ToString();
+                        tempMinima = forecast.Daily.Temperature2mMin[i].GetValueOrDefault().ToString();
+                        tempMaxima = forecast.Daily.Temperature2mMax[i].GetValueOrDefault().ToString().ToString();
                     }
                 }
             }
@@ -133,6 +140,7 @@ namespace Progetto.ModelView
                 {
                     Location = new Locations() { Name = geocodingResult.Results[0].Name, Latitude = geocodingResult.Results[0].Latitude, Longitude = geocodingResult.Results[0].Longitude};
                     Città = Location.Name;
+                    currentLocation= Location;
                 }
             }
         }
@@ -160,14 +168,6 @@ namespace Progetto.ModelView
                     if (forecastDaily != null)
                     {
                         var fd = forecastDaily.Daily;
-                        //Temperature = fd.Temperature2mMin[0].GetValueOrDefault();
-                        //for (int i = 0; i < fd.Temperature2mMin.Count; i++)
-                        //{
-                        //    Console.WriteLine(fd.Temperature2mMin[i].GetValueOrDefault());
-                        //    Console.WriteLine(fd.Temperature2mMax[i].GetValueOrDefault());
-                        //    Console.WriteLine(UnixTimeStampToDateTime(fd.Sunrise[i].GetValueOrDefault()));
-                        //    Console.WriteLine(fd.Sunset[i].GetValueOrDefault());
-                        //}
                     }
                 }
             }

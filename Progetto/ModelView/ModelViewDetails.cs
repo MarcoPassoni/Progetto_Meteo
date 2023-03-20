@@ -24,7 +24,7 @@ namespace Progetto.ModelView
 
         public ModelViewDetails(Locations location, string data1, string tempMin, string tempMax)
         {
-            this.location = location;
+            Location = location;
             Data1 = data1;
             TempMinima = tempMin;
             TempMaxima = tempMax;
