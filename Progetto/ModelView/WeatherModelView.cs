@@ -47,20 +47,22 @@ namespace Progetto.ModelView
                 return;
             }
             CurrentLocation = (Locations)loc;
-            SearchWeather(CurrentLocation);
-            await App.Current.MainPage.Navigation.PushAsync(new GoToDetails((Locations)loc));
+            ModelViewDetails viewDetails = new ModelViewDetails(CurrentLocation);
+            viewDetails.Remove += RemoveInPreference;
+            await App.Current.MainPage.Navigation.PushAsync(new GoToDetails(viewDetails));
         }
 
-        /*[RelayCommand]
+        [RelayCommand]
         async Task GoToDetailsWithoutObject()
         {
-            if (Location == null)
+            if (CurrentLocation == null)
             {
                 return;
             }
-            SearchWeather(Location);
-            await App.Current.MainPage.Navigation.PushAsync(new GoToDetails(Location, data1, tempMinima, tempMaxima));
-        }*/
+            ModelViewDetails viewDetails = new ModelViewDetails(CurrentLocation);
+            viewDetails.Remove += RemoveInPreference;
+            await App.Current.MainPage.Navigation.PushAsync(new GoToDetails(viewDetails));
+        }
 
         [RelayCommand]
         public async void SearchCity()
@@ -75,7 +77,7 @@ namespace Progetto.ModelView
         [RelayCommand]
         public void PlaceInPreferences()
         {
-            if (PreferencesCities.Contains(CurrentLocation))
+            if (PreferencesCities.Contains(CurrentLocation) || CurrentLocation == null || currentLocation == default)
             {
                 return;
             }
@@ -84,6 +86,16 @@ namespace Progetto.ModelView
             var json = JsonSerializer.Serialize(PreferencesCities);
             File.WriteAllText(path, json);
         }
+
+        private async Task RemoveInPreference(Locations loc)
+        {
+            PreferencesCities.Remove(loc);
+            string path = FileSystem.AppDataDirectory + "/preferencesCities.json";
+            var json = JsonSerializer.Serialize(PreferencesCities);
+            await File.WriteAllTextAsync(path, json);
+        }
+
+        
 
         public async void SearchWeather(Locations CurrentLocation)
         {
@@ -111,7 +123,7 @@ namespace Progetto.ModelView
                 GeoCoding? geocodingResult = await responseGeocoding.Content.ReadFromJsonAsync<GeoCoding>();
                 if (geocodingResult != null)
                 {
-                    CurrentLocation = new Locations(geocodingResult.Results[0].Name, geocodingResult.Results[0].Latitude, geocodingResult.Results[0].Longitude);
+                    CurrentLocation = new Locations() { Name = geocodingResult.Results[0].Name, Latitude = geocodingResult.Results[0].Latitude, Longitude = geocodingResult.Results[0].Longitude };
                 }
             }
         }

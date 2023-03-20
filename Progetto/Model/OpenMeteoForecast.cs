@@ -7,19 +7,20 @@ using System.Threading.Tasks;
 
 namespace Progetto.Model
 {
+    // Root myDeserializedClass = JsonSerializer.Deserialize<Root>(myJsonResponse);
     public class CurrentWeather
     {
         [JsonPropertyName("temperature")]
-        public int? Temperature { get; set; }
+        public double Temperature { get; set; }
 
         [JsonPropertyName("windspeed")]
-        public double? Windspeed { get; set; }
+        public double Windspeed { get; set; }
 
         [JsonPropertyName("winddirection")]
-        public int? Winddirection { get; set; }
+        public double Winddirection { get; set; }
 
         [JsonPropertyName("weathercode")]
-        public int? Weathercode { get; set; }
+        public int Weathercode { get; set; }
 
         [JsonPropertyName("time")]
         public string Time { get; set; }
@@ -31,10 +32,10 @@ namespace Progetto.Model
         public List<string> Time { get; set; }
 
         [JsonPropertyName("temperature_2m_max")]
-        public List<double?> Temperature2mMax { get; set; }
+        public List<double> Temperature2mMax { get; set; }
 
         [JsonPropertyName("temperature_2m_min")]
-        public List<double?> Temperature2mMin { get; set; }
+        public List<double> Temperature2mMin { get; set; }
 
         [JsonPropertyName("sunrise")]
         public List<string> Sunrise { get; set; }
@@ -43,7 +44,7 @@ namespace Progetto.Model
         public List<string> Sunset { get; set; }
 
         [JsonPropertyName("precipitation_probability_max")]
-        public List<int?> PrecipitationProbabilityMax { get; set; }
+        public List<int> PrecipitationProbabilityMax { get; set; }
     }
 
     public class DailyUnits
@@ -73,16 +74,16 @@ namespace Progetto.Model
         public List<string> Time { get; set; }
 
         [JsonPropertyName("temperature_2m")]
-        public List<double?> Temperature2m { get; set; }
+        public List<double> Temperature2m { get; set; }
 
         [JsonPropertyName("temperature_975hPa")]
-        public List<double?> Temperature975hPa { get; set; }
+        public List<double> Temperature975hPa { get; set; }
 
         [JsonPropertyName("cloudcover_975hPa")]
-        public List<int?> Cloudcover975hPa { get; set; }
+        public List<int> Cloudcover975hPa { get; set; }
 
         [JsonPropertyName("windspeed_975hPa")]
-        public List<double?> Windspeed975hPa { get; set; }
+        public List<double> Windspeed975hPa { get; set; }
     }
 
     public class HourlyUnits
@@ -106,16 +107,16 @@ namespace Progetto.Model
     public class OpenMeteoForecast
     {
         [JsonPropertyName("latitude")]
-        public double? Latitude { get; set; }
+        public double Latitude { get; set; }
 
         [JsonPropertyName("longitude")]
-        public double? Longitude { get; set; }
+        public double Longitude { get; set; }
 
         [JsonPropertyName("generationtime_ms")]
-        public double? GenerationtimeMs { get; set; }
+        public double GenerationtimeMs { get; set; }
 
         [JsonPropertyName("utc_offset_seconds")]
-        public int? UtcOffsetSeconds { get; set; }
+        public int UtcOffsetSeconds { get; set; }
 
         [JsonPropertyName("timezone")]
         public string Timezone { get; set; }
@@ -124,7 +125,7 @@ namespace Progetto.Model
         public string TimezoneAbbreviation { get; set; }
 
         [JsonPropertyName("elevation")]
-        public int? Elevation { get; set; }
+        public double Elevation { get; set; }
 
         [JsonPropertyName("current_weather")]
         public CurrentWeather CurrentWeather { get; set; }
@@ -141,4 +142,6 @@ namespace Progetto.Model
         [JsonPropertyName("daily")]
         public Daily Daily { get; set; }
     }
+
+
 }
