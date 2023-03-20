@@ -13,9 +13,21 @@ namespace Progetto.ModelView
         [ObservableProperty]
         Locations location;
 
-        public ModelViewDetails(Locations location)
+        [ObservableProperty]
+        public string data1;
+
+        [ObservableProperty]
+        public string tempMinima;
+
+        [ObservableProperty]
+        public string tempMaxima;
+
+        public ModelViewDetails(Locations location, string data1, string tempMin, string tempMax)
         {
-            Location = location;
+            this.location = location;
+            Data1 = data1;
+            TempMinima = tempMin;
+            TempMaxima = tempMax;
         }
     }
 }

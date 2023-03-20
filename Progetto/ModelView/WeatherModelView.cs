@@ -22,6 +22,12 @@ namespace Progetto.ModelView
 
         public ObservableCollection<Locations> PreferencesCities { get; set; } = new ObservableCollection<Locations>();
 
+        public string data1;
+
+        public string tempMinima;
+
+        public string tempMaxima;
+
         [ObservableProperty]
         public string città;
 
@@ -52,6 +58,7 @@ namespace Progetto.ModelView
                 PreferencesCities = JsonSerializer.Deserialize<ObservableCollection<Locations>>(File.ReadAllText(path));
             }
         }
+
         [RelayCommand]
         async Task GoToDetails(object loc) //passare il nome della città
         {
@@ -59,8 +66,9 @@ namespace Progetto.ModelView
             {
                 return;
             }
-            currentLocation = (Locations)loc;
-            await App.Current.MainPage.Navigation.PushAsync(new GoToDetails((Locations)loc));
+            CurrentLocation = (Locations)loc;
+            SearchWeather(CurrentLocation);
+            await App.Current.MainPage.Navigation.PushAsync(new GoToDetails((Locations)loc, data1, tempMinima, tempMaxima));
         }
 
         [RelayCommand]
@@ -85,6 +93,32 @@ namespace Progetto.ModelView
             string path = FileSystem.AppDataDirectory + "/preferencesCities.json";
             var json = JsonSerializer.Serialize(PreferencesCities);
             File.WriteAllText(path, json);
+        }
+
+        public async void SearchWeather(Locations CurrentLocation)
+        {
+            DateTime data = DateTime.Now;
+            //https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=temperature_2m,temperature_975hPa,cloudcover_975hPa,windspeed_975hPa&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_probability_max&timezone=auto
+            string url = $"https://api.open-meteo.com/v1/forecast?latitude={CurrentLocation.Latitude}&longitude={CurrentLocation.Longitude}&hourly=temperature_2m,temperature_975hPa,cloudcover_975hPa,windspeed_975hPa&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_probability_max&timezone=auto";
+            var response = await client.GetAsync($"{url}");
+            if (!response.IsSuccessStatusCode)
+            {
+                return;
+            }
+            OpenMeteoForecast? forecast = await response.Content.ReadFromJsonAsync<OpenMeteoForecast>();
+            if (forecast != null)
+            {
+                if (forecast.Daily != null)
+                {
+                    for (int i = 0; i < forecast.Daily.Temperature2mMin.Count; i++)
+                    {
+
+                        data1 = "Data =" + UnixTimeStampToDateTime(forecast.Daily.Time[i]);
+                        tempMinima = "Temp minima =" + forecast.Daily.Temperature2mMin[i].GetValueOrDefault();
+                        tempMaxima = "Temp Massima =" + forecast.Daily.Temperature2mMax[i].GetValueOrDefault();
+                    }
+                }
+            }
         }
 
         public async Task GeoCod()

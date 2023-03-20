@@ -11,10 +11,13 @@
         <ViewModel:WeatherModelView/>
     </ContentPage.BindingContext>
     
-    
     <VerticalStackLayout>
         <Label Text="{Binding Location.Name, StringFormat='Città: {0}'}" FontSize="20"/>
         <Label Text="{Binding Location.Latitude, StringFormat='Latitudine: {0}'}" FontSize="20"/>
         <Label Text="{Binding Location.Longitude, StringFormat='Longitudine: {0}'}" FontSize="20"/>
+        <Label Text="{Binding Data1, StringFormat='data: {0}'}" FontSize="20"/>
+        <Label Text="{Binding TempMaxima, StringFormat='tempMin: {0}'}" FontSize="20"/>
+        <Label Text="{Binding TempMinima, StringFormat='tempMax: {0}'}" FontSize="20"/>
+        
     </VerticalStackLayout>
 </ContentPage>
