@@ -10,6 +10,7 @@
     <VerticalStackLayout>
         <Label Text="{Binding Location.Name, StringFormat='Città: {0}'}" TextColor="White"/>
         <Label Text="{Binding Current.Temperature, StringFormat='Temperatura: {0}'}" TextColor="White"/>
+        <Label Text="{Binding Weather, StringFormat='Tempo: {0}'}" TextColor="White"/>
         <Button Text="togli dai preferiti" Command="{Binding RemoveInPreferencesCommand}"/>
     </VerticalStackLayout>
 </ContentPage>

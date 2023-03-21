@@ -10,8 +10,6 @@ public partial class GoToDetails : ContentPage
 	{
 		InitializeComponent();
         NavigationPage.SetHasNavigationBar(this, false);
-
-
         BindingContext = modelView;
     }
 }
