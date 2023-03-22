@@ -1,6 +1,7 @@
 ﻿using Progetto.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Text.Json.Serialization;
@@ -24,9 +25,9 @@ namespace Progetto.Model
             Windspeed10mMax = windspeed10mMax;
             Windgusts10mMax = windgusts10mMax;
             Winddirection10mDominant = winddirection10mDominant;
-        }
+    }
 
-        public DateTime Time { get; set; }
+    public DateTime Time { get; set; }
         public int Weathercode { get; set; }
         public double Temperature2mMax { get; set; }
         public double Temperature2mMin { get; set; }
