@@ -6,30 +6,13 @@
              xmlns:ViewModel="clr-namespace:Progetto.ModelView"
              xmlns:Model="clr-namespace:Progetto.Model"
              x:DataType="ViewModel:ModelViewDetails">
-    
+
     <ContentPage.BindingContext>
         <ViewModel:WeatherModelView/>
     </ContentPage.BindingContext>
-
-    <CollectionView ItemsSource="{Binding MeteoForecast.Daily}">
-        <CollectionView.ItemTemplate>
-            <DataTemplate x:DataType="Model:Daily">
-                <Frame>
-                    <Frame.GestureRecognizers>
-                        <TapGestureRecognizer
-                        Command="{Binding Source={RelativeSource AncestorType={x:Type ViewModel:WeatherModelView}}, Path=GoToDetailsCommand}"
-                        CommandParameter="{Binding .}"/>
-                    </Frame.GestureRecognizers>
-                    <Grid Padding="0" ColumnDefinitions="40,*">
-                        <VerticalStackLayout
-                                    Grid.Column="1"
-                                    VerticalOptions="Center"
-                                    Padding="10">
-                            <Label Text="{Binding Name, StringFormat='città: {0:F0}'}" TextColor="Black" FontSize="20"/>
-                        </VerticalStackLayout>
-                    </Grid>
-                </Frame>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>
+    
+    <VerticalStackLayout>
+        <Label Text="ciao" TextColor="Black" FontSize="20"/>
+    </VerticalStackLayout>
+    
 </ContentPage>
