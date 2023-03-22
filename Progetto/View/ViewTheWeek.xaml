@@ -7,12 +7,26 @@
              xmlns:Model="clr-namespace:Progetto.Model"
              x:DataType="ViewModel:ModelViewDetails">
 
-    <ContentPage.BindingContext>
-        <ViewModel:WeatherModelView/>
-    </ContentPage.BindingContext>
-    
-    <VerticalStackLayout>
-        <Label Text="ciao" TextColor="Black" FontSize="20"/>
-    </VerticalStackLayout>
+    <CollectionView ItemsSource="{Binding DailyMeteo}">
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="Model:DailyMeteo">
+                <Frame>
+                    <Frame.GestureRecognizers>
+                        <!--<TapGestureRecognizer
+                        Command="{Binding Source={RelativeSource AncestorType={x:Type ViewModel:WeatherModelView}}}"
+                        CommandParameter="{Binding .}"/>-->
+                    </Frame.GestureRecognizers>
+                    <Grid Padding="0" ColumnDefinitions="40,*">
+                        <VerticalStackLayout
+                                    Grid.Column="1"
+                                    VerticalOptions="Center"
+                                    Padding="10">
+                            <Label Text="{Binding Time, StringFormat='{0:dd MMM }'}" TextColor="Black" FontSize="20"/>
+                        </VerticalStackLayout>
+                    </Grid>
+                </Frame>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
     
 </ContentPage>

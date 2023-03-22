@@ -4,6 +4,7 @@ using Microsoft.Maui.Controls;
 using Progetto.Model;
 using Progetto.View;
 using System;
+using System.Collections.ObjectModel;
 using System.Net.Http.Json;
 using System.Text.Json;
 
@@ -25,24 +26,36 @@ namespace Progetto.ModelView
         [ObservableProperty]
         public OpenMeteoForecast meteoForecast;
 
+        public ObservableCollection<DailyMeteo> DailyMeteo { get; set; } = new ObservableCollection<DailyMeteo>();
+
         [ObservableProperty]
         public string weather;
+
         public ModelViewDetails(Locations location)
         {
+
             Task.Run(async () =>
             {
                 Location = location;
                 await SearchWeather(location);
                 ViewWeather();
-            });
+                CreationVariable();
+            }).Wait();
         }
 
-
+        public void CreationVariable()
+        {
+            for (int i = 0; i < MeteoForecast.Daily.Sunrise.Count; i++)
+            {
+                DailyMeteo.Add(new DailyMeteo(MeteoForecast.Daily.Time[i], MeteoForecast.Daily.Weathercode[i], MeteoForecast.Daily.Temperature2mMax[i], MeteoForecast.Daily.Temperature2mMin[i], MeteoForecast.Daily.Sunrise[i], MeteoForecast.Daily.Sunset[i], MeteoForecast.Daily.RainSum[i], MeteoForecast.Daily.ShowersSum[i], MeteoForecast.Daily.PrecipitationProbabilityMax[i], MeteoForecast.Daily.Windspeed10mMax[i], MeteoForecast.Daily.Windgusts10mMax[i], MeteoForecast.Daily.Winddirection10mDominant[i]));
+                
+            }
+        }
         private async Task SearchWeather(Locations CurrentLocation)
         {
             //DateTime data = DateTime.Now;
             //https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=temperature_2m,temperature_975hPa,cloudcover_975hPa,windspeed_975hPa&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_probability_max&timezone=auto&current_weather=true
-            FormattableString tempUrl = $"https://api.open-meteo.com/v1/forecast?latitude={CurrentLocation.Latitude}&longitude={CurrentLocation.Longitude}&hourly=temperature_2m,temperature_975hPa,cloudcover_975hPa,windspeed_975hPa&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_probability_max&timezone=auto&current_weather=true";
+            FormattableString tempUrl = $"https://api.open-meteo.com/v1/forecast?latitude={CurrentLocation.Latitude}&longitude={CurrentLocation.Longitude}&hourly=temperature_2m,rain,showers,weathercode,pressure_msl,visibility,windspeed_10m&daily=weathercode,temperature_2m_max,temperature_2m_min,sunrise,sunset,rain_sum,showers_sum,precipitation_probability_max,windspeed_10m_max,windgusts_10m_max,winddirection_10m_dominant&current_weather=true&timeformat=unixtime&timezone=auto";
             var url = FormattableString.Invariant(tempUrl);
 
             var response = await client.GetAsync(url);
@@ -63,13 +76,13 @@ namespace Progetto.ModelView
         [RelayCommand]
         public async void ViewTheWeek()
         {
-            await App.Current.MainPage.Navigation.PushAsync(new ViewTheWeek());
+            await App.Current.MainPage.Navigation.PushAsync(new ViewTheWeek(this));
         }
 
         [RelayCommand]
         public void ViewWeather()
         {
-            int code = MeteoForecast.CurrentWeather.Weathercode;
+            int? code = MeteoForecast.CurrentWeather.Weathercode;
             string result = code switch
             {
                 0 => "cielo sereno",
