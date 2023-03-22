@@ -26,7 +26,7 @@ namespace Progetto.ModelView
         [ObservableProperty]
         public OpenMeteoForecast meteoForecast;
 
-        public ObservableCollection<DailyMeteo> DailyMeteo { get; set; } = new ObservableCollection<DailyMeteo>();
+        public ObservableCollection<DailyMeteo> DailyMeteo { get; set; } = new ObservableCollection<DailyMeteo>(); //creo qui il DailyMeteo
 
         [ObservableProperty]
         public string weather;
@@ -48,9 +48,15 @@ namespace Progetto.ModelView
             for (int i = 0; i < MeteoForecast.Daily.Sunrise.Count; i++)
             {
                 DailyMeteo.Add(new DailyMeteo(MeteoForecast.Daily.Time[i], MeteoForecast.Daily.Weathercode[i], MeteoForecast.Daily.Temperature2mMax[i], MeteoForecast.Daily.Temperature2mMin[i], MeteoForecast.Daily.Sunrise[i], MeteoForecast.Daily.Sunset[i], MeteoForecast.Daily.RainSum[i], MeteoForecast.Daily.ShowersSum[i], MeteoForecast.Daily.PrecipitationProbabilityMax[i], MeteoForecast.Daily.Windspeed10mMax[i], MeteoForecast.Daily.Windgusts10mMax[i], MeteoForecast.Daily.Winddirection10mDominant[i]));
-                
             }
         }
+
+        [RelayCommand]
+        public async void ViewWeatherForHour()
+        {
+            await App.Current.MainPage.Navigation.PushAsync(new ViewWeatherForHour(this));
+        }
+
         private async Task SearchWeather(Locations CurrentLocation)
         {
             //DateTime data = DateTime.Now;

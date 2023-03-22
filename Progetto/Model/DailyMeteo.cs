@@ -39,6 +39,7 @@ namespace Progetto.Model
         public double Windgusts10mMax { get; set; }
         public int Winddirection10mDominant { get; set; }
 
+
         private DateTime UnixTimeStampToDateTime(int unixTimeStamp)
         {
             DateTime dateTime = new(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
