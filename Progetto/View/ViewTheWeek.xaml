@@ -2,11 +2,34 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Progetto.View.ViewTheWeek"
-             Title="ViewTheWeek">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             Title="ViewTheWeek"
+             xmlns:ViewModel="clr-namespace:Progetto.ModelView"
+             xmlns:Model="clr-namespace:Progetto.Model"
+             x:DataType="ViewModel:ModelViewDetails">
+    
+    <ContentPage.BindingContext>
+        <ViewModel:WeatherModelView/>
+    </ContentPage.BindingContext>
+
+    <CollectionView ItemsSource="{Binding MeteoForecast.Daily}">
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="Model:Daily">
+                <Frame>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer
+                        Command="{Binding Source={RelativeSource AncestorType={x:Type ViewModel:WeatherModelView}}, Path=GoToDetailsCommand}"
+                        CommandParameter="{Binding .}"/>
+                    </Frame.GestureRecognizers>
+                    <Grid Padding="0" ColumnDefinitions="40,*">
+                        <VerticalStackLayout
+                                    Grid.Column="1"
+                                    VerticalOptions="Center"
+                                    Padding="10">
+                            <Label Text="{Binding Name, StringFormat='città: {0:F0}'}" TextColor="Black" FontSize="20"/>
+                        </VerticalStackLayout>
+                    </Grid>
+                </Frame>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
 </ContentPage>

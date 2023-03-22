@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Maui.Controls;
 using Progetto.Model;
+using Progetto.View;
 using System;
 using System.Net.Http.Json;
 using System.Text.Json;
@@ -57,6 +58,12 @@ namespace Progetto.ModelView
         public async void RemoveInPreferences()
         {
             await Remove(Location);
+        }
+
+        [RelayCommand]
+        public async void ViewTheWeek()
+        {
+            await App.Current.MainPage.Navigation.PushAsync(new ViewTheWeek());
         }
 
         [RelayCommand]
