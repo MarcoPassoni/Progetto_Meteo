@@ -48,7 +48,7 @@ namespace Progetto.ModelView
             for (int i = 0; i < MeteoForecast.Daily.Sunrise.Count; i++)
             {
                 List<Ore> oreList = new List<Ore>(24); 
-                for (int j = 0; j < oreList.Count; j++)
+                for (int j = 0; j < oreList.Capacity; j++)
                 {
                     oreList.Add(new Ore() { PressureMsl = meteoForecast.Hourly.PressureMsl[i], Rain = meteoForecast.Hourly.Rain[i], Showers = meteoForecast.Hourly.Showers[i], Temperature2m = meteoForecast.Hourly.Temperature2m[i], Time = meteoForecast.Hourly.Time[i], Visibility = meteoForecast.Hourly.Visibility[i], Weathercode = meteoForecast.Hourly.Weathercode[i], Windspeed10m = meteoForecast.Hourly.Windspeed10m[i]});
                 }
