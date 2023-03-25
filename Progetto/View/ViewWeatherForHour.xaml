@@ -2,11 +2,30 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Progetto.View.ViewWeatherForHour"
-             Title="ViewWeatherForHour">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             Title="ViewWeatherForHour"
+             xmlns:ViewModel="clr-namespace:Progetto.ModelView"
+             xmlns:Model="clr-namespace:Progetto.Model"
+             x:DataType="ViewModel:ModelViewDetails">
+    
+    <CollectionView ItemsSource="{Binding DailyMeteo}">
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="Model:DailyMeteo">
+                <Frame>
+                    <Frame.GestureRecognizers>
+                        <!--<TapGestureRecognizer
+                        Command="{Binding Source={RelativeSource AncestorType={x:Type ViewModel:ModelViewDetails}}, Path=ViewWeatherForHourCommand}"
+                        CommandParameter="{Binding .}"/>-->
+                    </Frame.GestureRecognizers>
+                    <Grid Padding="0" ColumnDefinitions="40,*">
+                        <VerticalStackLayout
+                                    Grid.Column="1"
+                                    VerticalOptions="Center"
+                                    Padding="10">
+                            <Label Text="{Binding Time, StringFormat='{0:dd MMM }'}" TextColor="Black" FontSize="20"/>
+                        </VerticalStackLayout>
+                    </Grid>
+                </Frame>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
 </ContentPage>

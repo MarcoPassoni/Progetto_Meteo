@@ -52,7 +52,7 @@ namespace Progetto.ModelView
                 {
                     oreList.Add(new Ore() { PressureMsl = meteoForecast.Hourly.PressureMsl[i], Rain = meteoForecast.Hourly.Rain[i], Showers = meteoForecast.Hourly.Showers[i], Temperature2m = meteoForecast.Hourly.Temperature2m[i], Time = meteoForecast.Hourly.Time[i], Visibility = meteoForecast.Hourly.Visibility[i], Weathercode = meteoForecast.Hourly.Weathercode[i], Windspeed10m = meteoForecast.Hourly.Windspeed10m[i]});
                 }
-                DailyMeteo.Add(new DailyMeteo(MeteoForecast.Daily.Time[i], MeteoForecast.Daily.Weathercode[i], MeteoForecast.Daily.Temperature2mMax[i], MeteoForecast.Daily.Temperature2mMin[i], MeteoForecast.Daily.Sunrise[i], MeteoForecast.Daily.Sunset[i], MeteoForecast.Daily.RainSum[i], MeteoForecast.Daily.ShowersSum[i], MeteoForecast.Daily.PrecipitationProbabilityMax[i], MeteoForecast.Daily.Windspeed10mMax[i], MeteoForecast.Daily.Windgusts10mMax[i], MeteoForecast.Daily.Winddirection10mDominant[i]), oreList);
+                DailyMeteo.Add(new DailyMeteo(MeteoForecast.Daily.Time[i], MeteoForecast.Daily.Weathercode[i], MeteoForecast.Daily.Temperature2mMax[i], MeteoForecast.Daily.Temperature2mMin[i], MeteoForecast.Daily.Sunrise[i], MeteoForecast.Daily.Sunset[i], MeteoForecast.Daily.RainSum[i], MeteoForecast.Daily.ShowersSum[i], MeteoForecast.Daily.PrecipitationProbabilityMax[i], MeteoForecast.Daily.Windspeed10mMax[i], MeteoForecast.Daily.Windgusts10mMax[i], MeteoForecast.Daily.Winddirection10mDominant[i], oreList));
             }
         }
 
