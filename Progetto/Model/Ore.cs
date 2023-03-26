@@ -10,7 +10,7 @@ namespace Progetto.Model
     public class Ore
     {
         [JsonPropertyName("time")]
-        public int Time { get; set; }
+        public DateTime Time { get; set; }
         [JsonPropertyName("temperature_2m")]
         public double Temperature2m { get; set; }
         [JsonPropertyName("rain")]

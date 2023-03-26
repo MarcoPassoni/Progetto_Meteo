@@ -29,6 +29,9 @@ namespace Progetto.ModelView
         public ObservableCollection<DailyMeteo> DailyMeteo { get; set; } = new ObservableCollection<DailyMeteo>(); //creo qui il DailyMeteo
 
         [ObservableProperty]
+        public DailyMeteo clicked;
+
+        [ObservableProperty]
         public string weather;
 
         public ModelViewDetails(Locations location)
@@ -43,14 +46,35 @@ namespace Progetto.ModelView
             }).Wait();
         }
 
+        public DateTime UnixTimeStampToDateTime(double? unixTimeStamp)
+        {
+            if (unixTimeStamp != null)
+            {
+                DateTime dateTime = new(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+                dateTime = dateTime.AddSeconds((double)unixTimeStamp).ToLocalTime();
+                return dateTime;
+            }
+            return new DateTime();
+        }
+
+        [RelayCommand]
+        public async void ViewTheDay(object obj)
+        {
+            if (obj == null || !(obj is DailyMeteo)) return;
+            Clicked = (DailyMeteo)obj;
+            await App.Current.MainPage.Navigation.PushAsync(new ViewTheDay(this));
+        }
+
         public void CreationVariable()
         {
+            int j = 0;
             for (int i = 0; i < MeteoForecast.Daily.Sunrise.Count; i++)
             {
-                List<Ore> oreList = new List<Ore>(24); 
-                for (int j = 0; j < oreList.Capacity; j++)
+                List<Ore> oreList = new List<Ore>(24);
+                int k = j + 24;
+                for (; j < k; j++)
                 {
-                    oreList.Add(new Ore() { PressureMsl = meteoForecast.Hourly.PressureMsl[i], Rain = meteoForecast.Hourly.Rain[i], Showers = meteoForecast.Hourly.Showers[i], Temperature2m = meteoForecast.Hourly.Temperature2m[i], Time = meteoForecast.Hourly.Time[i], Visibility = meteoForecast.Hourly.Visibility[i], Weathercode = meteoForecast.Hourly.Weathercode[i], Windspeed10m = meteoForecast.Hourly.Windspeed10m[i]});
+                    oreList.Add(new Ore() { PressureMsl = meteoForecast.Hourly.PressureMsl[j], Rain = meteoForecast.Hourly.Rain[j], Showers = meteoForecast.Hourly.Showers[j], Temperature2m = meteoForecast.Hourly.Temperature2m[j], Time = UnixTimeStampToDateTime(meteoForecast.Hourly.Time[j]), Visibility = meteoForecast.Hourly.Visibility[j], Weathercode = meteoForecast.Hourly.Weathercode[j], Windspeed10m = meteoForecast.Hourly.Windspeed10m[j]});
                 }
                 DailyMeteo.Add(new DailyMeteo(MeteoForecast.Daily.Time[i], MeteoForecast.Daily.Weathercode[i], MeteoForecast.Daily.Temperature2mMax[i], MeteoForecast.Daily.Temperature2mMin[i], MeteoForecast.Daily.Sunrise[i], MeteoForecast.Daily.Sunset[i], MeteoForecast.Daily.RainSum[i], MeteoForecast.Daily.ShowersSum[i], MeteoForecast.Daily.PrecipitationProbabilityMax[i], MeteoForecast.Daily.Windspeed10mMax[i], MeteoForecast.Daily.Windgusts10mMax[i], MeteoForecast.Daily.Winddirection10mDominant[i], oreList));
             }

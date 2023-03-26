@@ -72,6 +72,9 @@
 	  <MauiXaml Update="View\Options.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="View\ViewTheDay.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="View\ViewTheWeek.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

@@ -11,19 +11,18 @@
         <CollectionView.ItemTemplate>
             <DataTemplate x:DataType="Model:DailyMeteo">
                 <Frame>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer
+                        Command="{Binding Source={RelativeSource AncestorType={x:Type ViewModel:ModelViewDetails}}, Path=ViewTheDayCommand}"
+                        CommandParameter="{Binding .}"/>
+                    </Frame.GestureRecognizers>
                     <Grid Padding="0" ColumnDefinitions="40,*">
-                        <CollectionView ItemsSource="{Binding hourlies}">
-                            <CollectionView.ItemTemplate>
-                                <DataTemplate x:DataType="Model:Ore">
-                                    <VerticalStackLayout
+                        <VerticalStackLayout
                                     Grid.Column="1"
                                     VerticalOptions="Center"
                                     Padding="10">
-                                        <Label Text="{Binding Time, StringFormat='{0:dd MMM }'}" TextColor="Black" FontSize="20"/>
-                                    </VerticalStackLayout>
-                                </DataTemplate>
-                            </CollectionView.ItemTemplate>
-                        </CollectionView>
+                            <Label Text="{Binding Time, StringFormat='{0:dd MMM }'}" TextColor="Black" FontSize="20"/>
+                        </VerticalStackLayout>
                     </Grid>
                 </Frame>
             </DataTemplate>
