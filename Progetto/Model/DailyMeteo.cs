@@ -11,7 +11,7 @@ namespace Progetto.Model
 {
     public class DailyMeteo
     {
-        public DailyMeteo(int time, int weathercode, double temperature2mMax, double temperature2mMin, long sunrise, long sunset, double rainSum, double showersSum, int precipitationProbabilityMax, double windspeed10mMax, double windgusts10mMax, int winddirection10mDominant, List<Ore> hourly)
+        public DailyMeteo(int time, int weathercode, double temperature2mMax, double temperature2mMin, DateTime sunrise, DateTime sunset, double rainSum, double showersSum, int precipitationProbabilityMax, double windspeed10mMax, double windgusts10mMin, int winddirection10mDominant, List<Ore> hourly)
         {
             Time = UnixTimeStampToDateTime(time);
             Weathercode = weathercode;
@@ -23,7 +23,7 @@ namespace Progetto.Model
             ShowersSum = showersSum;
             PrecipitationProbabilityMax = precipitationProbabilityMax;
             Windspeed10mMax = windspeed10mMax;
-            Windgusts10mMax = windgusts10mMax;
+            Windgusts10mMin = windgusts10mMin;
             Winddirection10mDominant = winddirection10mDominant;
             hourlies = hourly;
     }
@@ -32,13 +32,13 @@ namespace Progetto.Model
         public int Weathercode { get; set; }
         public double Temperature2mMax { get; set; }
         public double Temperature2mMin { get; set; }
-        public long Sunrise { get; set; }
-        public long Sunset { get; set; }
+        public DateTime Sunrise { get; set; }
+        public DateTime Sunset { get; set; }
         public double RainSum { get; set; }
         public double ShowersSum { get; set; }
         public int PrecipitationProbabilityMax { get; set; }
         public double Windspeed10mMax { get; set; }
-        public double Windgusts10mMax { get; set; }
+        public double Windgusts10mMin { get; set; }
         public int Winddirection10mDominant { get; set; }
 
 

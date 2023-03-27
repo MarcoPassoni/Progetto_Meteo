@@ -32,6 +32,9 @@ namespace Progetto.ModelView
         public DailyMeteo clicked;
 
         [ObservableProperty]
+        public Ore clickedHour;
+
+        [ObservableProperty]
         public string weather;
 
         public ModelViewDetails(Locations location)
@@ -65,6 +68,14 @@ namespace Progetto.ModelView
             await App.Current.MainPage.Navigation.PushAsync(new ViewTheDay(this));
         }
 
+        [RelayCommand]
+        public async void ViewTheHour(object obj)
+        {
+            if (obj == null || !(obj is Ore)) return;
+            ClickedHour = (Ore)obj;
+            await App.Current.MainPage.Navigation.PushAsync(new ViewTheHour(this));
+        }
+
         public void CreationVariable()
         {
             int j = 0;
@@ -76,7 +87,7 @@ namespace Progetto.ModelView
                 {
                     oreList.Add(new Ore() { PressureMsl = meteoForecast.Hourly.PressureMsl[j], Rain = meteoForecast.Hourly.Rain[j], Showers = meteoForecast.Hourly.Showers[j], Temperature2m = meteoForecast.Hourly.Temperature2m[j], Time = UnixTimeStampToDateTime(meteoForecast.Hourly.Time[j]), Visibility = meteoForecast.Hourly.Visibility[j], Weathercode = meteoForecast.Hourly.Weathercode[j], Windspeed10m = meteoForecast.Hourly.Windspeed10m[j]});
                 }
-                DailyMeteo.Add(new DailyMeteo(MeteoForecast.Daily.Time[i], MeteoForecast.Daily.Weathercode[i], MeteoForecast.Daily.Temperature2mMax[i], MeteoForecast.Daily.Temperature2mMin[i], MeteoForecast.Daily.Sunrise[i], MeteoForecast.Daily.Sunset[i], MeteoForecast.Daily.RainSum[i], MeteoForecast.Daily.ShowersSum[i], MeteoForecast.Daily.PrecipitationProbabilityMax[i], MeteoForecast.Daily.Windspeed10mMax[i], MeteoForecast.Daily.Windgusts10mMax[i], MeteoForecast.Daily.Winddirection10mDominant[i], oreList));
+                DailyMeteo.Add(new DailyMeteo(MeteoForecast.Daily.Time[i], MeteoForecast.Daily.Weathercode[i], MeteoForecast.Daily.Temperature2mMax[i], MeteoForecast.Daily.Temperature2mMin[i], UnixTimeStampToDateTime(MeteoForecast.Daily.Sunrise[i]), UnixTimeStampToDateTime(MeteoForecast.Daily.Sunset[i]), MeteoForecast.Daily.RainSum[i], MeteoForecast.Daily.ShowersSum[i], MeteoForecast.Daily.PrecipitationProbabilityMax[i], MeteoForecast.Daily.Windspeed10mMax[i], MeteoForecast.Daily.Windgusts10mMax[i], MeteoForecast.Daily.Winddirection10mDominant[i], oreList));
             }
         }
 

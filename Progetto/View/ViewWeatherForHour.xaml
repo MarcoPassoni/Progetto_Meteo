@@ -11,6 +11,11 @@
         <CollectionView.ItemTemplate>
             <DataTemplate x:DataType="Model:Ore">
                 <Frame>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer
+                        Command="{Binding Source={RelativeSource AncestorType={x:Type ViewModel:ModelViewDetails}}, Path=ViewTheHourCommand}"
+                        CommandParameter="{Binding .}"/>
+                    </Frame.GestureRecognizers>
                     <Grid Padding="0" ColumnDefinitions="40,*">
                         <Label Text="{Binding Time, StringFormat='{0:HH}'}" TextColor="Black"/>
                     </Grid>
@@ -18,5 +23,8 @@
             </DataTemplate>
         </CollectionView.ItemTemplate>
     </CollectionView>
-    
 </ContentPage>
+    
+    
+    
+  

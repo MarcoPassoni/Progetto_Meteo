@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Progetto.View.ViewTheHour"
+             Title="ViewTheHour"
+             xmlns:ViewModel="clr-namespace:Progetto.ModelView"
+             xmlns:Model="clr-namespace:Progetto.Model"
+             x:DataType="ViewModel:ModelViewDetails">
+    <VerticalStackLayout>
+        <Label Text="{Binding ClickedHour.Temperature2m, StringFormat='TEMPERATURA: {0}°'}" TextColor="White"/>
+        <Label Text="{Binding ClickedHour.PressureMsl, StringFormat='PRESSIONE: {0}'}"/>
+        <Label Text="{Binding ClickedHour.Rain, StringFormat='PROBABILITA DI PIOGGIA: {0}%'}"/>
+        <Label Text="{Binding ClickedHour.Showers, StringFormat='PIOGGERELLA: {0}%'}"/>
+        <Label Text="{Binding ClickedHour.Visibility, StringFormat='VISIBILITA: {0}%'}"/>
+        <Label Text="{Binding ClickedHour.weather, StringFormat='TEMPO: {0}'}"/>
+        <Label Text="{Binding ClickedHour.Windspeed10m, StringFormat='VELOCITA DEL VENTO: {0} km/h'}"/>
+    </VerticalStackLayout>
+</ContentPage>

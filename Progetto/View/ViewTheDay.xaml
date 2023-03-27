@@ -8,7 +8,17 @@
              x:DataType="ViewModel:ModelViewDetails">
 
     <VerticalStackLayout>
-        <Label Text="{Binding Clicked}"/>
+        <Label Text="{Binding Clicked.Temperature2mMax, StringFormat='TEMPERATURA MASSIMA: {0}°'}"/>
+        <Label Text="{Binding Clicked.Temperature2mMin, StringFormat='TEMPERATURA MINIMA: {0}°'}"/>
+        <Label Text="{Binding Clicked.PrecipitationProbabilityMax, StringFormat='PROBABILITA DI PIOGGIA: {0}%'}"/>
+        <Label Text="{Binding Clicked.RainSum, StringFormat='PIOGGIA: {0}%'}"/>
+        <Label Text="{Binding Clicked.ShowersSum, StringFormat='PIOGGIERELLA: {0}%'}"/>
+        <Label Text="{Binding Clicked.Sunrise, StringFormat='ORA DI ALBA: {0:HH:mm}'}"/>
+        <Label Text="{Binding Clicked.Sunset, StringFormat='ORA DI TRAMONTO: {0:HH:mm}'}"/>
+        <Label Text="{Binding Weather, StringFormat='TEMPO: {0}'}"/>
+        <Label Text="{Binding Clicked.Windgusts10mMin, StringFormat='VELOCITA MASSIMA DEL VENTO: {0} km/h'}"/>
+        <Label Text="{Binding Clicked.Windspeed10mMax, StringFormat='VELOCITA MINIMA DEL VENTO: {0} km/h'}"/>
+        
         <Button Text="guarda le ore" Command="{Binding ViewWeatherForHourCommand}"/>
     </VerticalStackLayout>
 </ContentPage>
