@@ -4,7 +4,9 @@
              x:Class="Progetto.View.DefaultPage"
              xmlns:ViewModel="clr-namespace:Progetto.ModelView"
              xmlns:Model="clr-namespace:Progetto.Model"
-             BackgroundImageSource="sunset.jpg">
+             BackgroundColor="#a2d2ff"
+             Padding="5">
+    
     <ContentPage.BindingContext>
         <ViewModel:WeatherModelView/>
     </ContentPage.BindingContext>
@@ -12,7 +14,7 @@
     <CollectionView ItemsSource="{Binding PreferencesCities}">
         <CollectionView.ItemTemplate>
             <DataTemplate x:DataType="Model:Locations">
-                <Frame>
+                <Frame BackgroundColor="#bde0fe" BorderColor="Transparent">
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer
                         Command="{Binding Source={RelativeSource AncestorType={x:Type ViewModel:WeatherModelView}}, Path=GoToDetailsCommand}"
@@ -23,7 +25,7 @@
                                     Grid.Column="1"
                                     VerticalOptions="Center"
                                     Padding="10">
-                            <Label Text="{Binding Name, StringFormat='città: {0:F0}'}" TextColor="Black" FontSize="20"/>
+                            <Label Text="{Binding Name, StringFormat='città: {0:F0}'}" TextColor="Black" FontSize="20" FontFamily="Insanibu"/>
                         </VerticalStackLayout>
                     </Grid>
                 </Frame>

@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Progetto.View.MainPage"
              xmlns:ViewModel="clr-namespace:Progetto.ModelView"
-             xmlns:Model="clr-namespace:Progetto.Model">
+             xmlns:Model="clr-namespace:Progetto.Model"
+             BackgroundColor="#bde0fe">
     
     <ContentPage.BindingContext>
         <ViewModel:WeatherModelView/>
