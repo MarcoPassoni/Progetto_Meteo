@@ -60,11 +60,13 @@ namespace Progetto.ModelView
             return new DateTime();
         }
 
+        #region View
         [RelayCommand]
         public async void ViewTheDay(object obj)
         {
             if (obj == null || !(obj is DailyMeteo)) return;
             Clicked = (DailyMeteo)obj;
+            App.Current.MainPage.Navigation.RemovePage(App.Current.MainPage);
             await App.Current.MainPage.Navigation.PushAsync(new ViewTheDay(this));
         }
 
@@ -76,47 +78,10 @@ namespace Progetto.ModelView
             await App.Current.MainPage.Navigation.PushAsync(new ViewTheHour(this));
         }
 
-        public void CreationVariable()
-        {
-            int j = 0;
-            for (int i = 0; i < MeteoForecast.Daily.Sunrise.Count; i++)
-            {
-                List<Ore> oreList = new List<Ore>(24);
-                int k = j + 24;
-                for (; j < k; j++)
-                {
-                    oreList.Add(new Ore() { PressureMsl = meteoForecast.Hourly.PressureMsl[j], Rain = meteoForecast.Hourly.Rain[j], Showers = meteoForecast.Hourly.Showers[j], Temperature2m = meteoForecast.Hourly.Temperature2m[j], Time = UnixTimeStampToDateTime(meteoForecast.Hourly.Time[j]), Visibility = meteoForecast.Hourly.Visibility[j], Weathercode = meteoForecast.Hourly.Weathercode[j], Windspeed10m = meteoForecast.Hourly.Windspeed10m[j]});
-                }
-                DailyMeteo.Add(new DailyMeteo(MeteoForecast.Daily.Time[i], MeteoForecast.Daily.Weathercode[i], MeteoForecast.Daily.Temperature2mMax[i], MeteoForecast.Daily.Temperature2mMin[i], UnixTimeStampToDateTime(MeteoForecast.Daily.Sunrise[i]), UnixTimeStampToDateTime(MeteoForecast.Daily.Sunset[i]), MeteoForecast.Daily.RainSum[i], MeteoForecast.Daily.ShowersSum[i], MeteoForecast.Daily.PrecipitationProbabilityMax[i], MeteoForecast.Daily.Windspeed10mMax[i], MeteoForecast.Daily.Windgusts10mMax[i], MeteoForecast.Daily.Winddirection10mDominant[i], oreList));
-            }
-        }
-
         [RelayCommand]
         public async void ViewWeatherForHour()
         {
             await App.Current.MainPage.Navigation.PushAsync(new ViewWeatherForHour(this));
-        }
-
-        private async Task SearchWeather(Locations CurrentLocation)
-        {
-            //DateTime data = DateTime.Now;
-            //https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=temperature_2m,temperature_975hPa,cloudcover_975hPa,windspeed_975hPa&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_probability_max&timezone=auto&current_weather=true
-            FormattableString tempUrl = $"https://api.open-meteo.com/v1/forecast?latitude={CurrentLocation.Latitude}&longitude={CurrentLocation.Longitude}&hourly=temperature_2m,rain,showers,weathercode,pressure_msl,visibility,windspeed_10m&daily=weathercode,temperature_2m_max,temperature_2m_min,sunrise,sunset,rain_sum,showers_sum,precipitation_probability_max,windspeed_10m_max,windgusts_10m_max,winddirection_10m_dominant&current_weather=true&timeformat=unixtime&timezone=auto";
-            var url = FormattableString.Invariant(tempUrl);
-
-            var response = await client.GetAsync(url);
-            if (!response.IsSuccessStatusCode)
-            {
-                return;
-            }
-            MeteoForecast = await response.Content.ReadFromJsonAsync<OpenMeteoForecast>();
-            if (MeteoForecast != null) Current = MeteoForecast.CurrentWeather;
-        }
-
-        [RelayCommand]
-        public async void RemoveInPreferences()
-        {
-            await Remove(Location);
         }
 
         [RelayCommand]
@@ -163,5 +128,44 @@ namespace Progetto.ModelView
             };
             Weather = result;
         }
+        #endregion
+        public void CreationVariable()
+        {
+            int j = 0;
+            for (int i = 0; i < MeteoForecast.Daily.Sunrise.Count; i++)
+            {
+                List<Ore> oreList = new List<Ore>(24);
+                int k = j + 24;
+                for (; j < k; j++)
+                {
+                    oreList.Add(new Ore() { PressureMsl = meteoForecast.Hourly.PressureMsl[j], Rain = meteoForecast.Hourly.Rain[j], Showers = meteoForecast.Hourly.Showers[j], Temperature2m = meteoForecast.Hourly.Temperature2m[j], Time = UnixTimeStampToDateTime(meteoForecast.Hourly.Time[j]), Visibility = meteoForecast.Hourly.Visibility[j], Weathercode = meteoForecast.Hourly.Weathercode[j], Windspeed10m = meteoForecast.Hourly.Windspeed10m[j]});
+                }
+                DailyMeteo.Add(new DailyMeteo(MeteoForecast.Daily.Time[i], MeteoForecast.Daily.Weathercode[i], MeteoForecast.Daily.Temperature2mMax[i], MeteoForecast.Daily.Temperature2mMin[i], UnixTimeStampToDateTime(MeteoForecast.Daily.Sunrise[i]), UnixTimeStampToDateTime(MeteoForecast.Daily.Sunset[i]), MeteoForecast.Daily.RainSum[i], MeteoForecast.Daily.ShowersSum[i], MeteoForecast.Daily.PrecipitationProbabilityMax[i], MeteoForecast.Daily.Windspeed10mMax[i], MeteoForecast.Daily.Windgusts10mMax[i], MeteoForecast.Daily.Winddirection10mDominant[i], oreList));
+            }
+        }
+
+        private async Task SearchWeather(Locations CurrentLocation)
+        {
+            //DateTime data = DateTime.Now;
+            //https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=temperature_2m,temperature_975hPa,cloudcover_975hPa,windspeed_975hPa&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_probability_max&timezone=auto&current_weather=true
+            FormattableString tempUrl = $"https://api.open-meteo.com/v1/forecast?latitude={CurrentLocation.Latitude}&longitude={CurrentLocation.Longitude}&hourly=temperature_2m,rain,showers,weathercode,pressure_msl,visibility,windspeed_10m&daily=weathercode,temperature_2m_max,temperature_2m_min,sunrise,sunset,rain_sum,showers_sum,precipitation_probability_max,windspeed_10m_max,windgusts_10m_max,winddirection_10m_dominant&current_weather=true&timeformat=unixtime&timezone=auto";
+            var url = FormattableString.Invariant(tempUrl);
+
+            var response = await client.GetAsync(url);
+            if (!response.IsSuccessStatusCode)
+            {
+                return;
+            }
+            MeteoForecast = await response.Content.ReadFromJsonAsync<OpenMeteoForecast>();
+            if (MeteoForecast != null) Current = MeteoForecast.CurrentWeather;
+        }
+
+        [RelayCommand]
+        public async void RemoveInPreferences()
+        {
+            await Remove(Location);
+        }
+
+        
     }
 }

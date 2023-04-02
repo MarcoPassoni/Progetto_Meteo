@@ -11,6 +11,9 @@ using System.Web;
 using System.Text.Json;
 using Progetto.View;
 using System.Collections.ObjectModel;
+using Microsoft.Maui.Devices.Sensors;
+using System.Diagnostics;
+using System.Net;
 
 //https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=temperature_2m,temperature_975hPa,cloudcover_975hPa,windspeed_975hPa&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_probability_max&timezone=auto
 namespace Progetto.ModelView
@@ -26,6 +29,9 @@ namespace Progetto.ModelView
 
         [ObservableProperty]
         private string text;
+
+        [ObservableProperty]
+        public bool state = false;
 
         [ObservableProperty]
         private CurrentWeather current;
@@ -64,6 +70,38 @@ namespace Progetto.ModelView
             await App.Current.MainPage.Navigation.PushAsync(new GoToDetails(viewDetails));
         }
 
+        #region GeoLocation
+
+        [RelayCommand]
+        async Task GetCurrentLocation()
+        {
+            try
+            {
+                // Get cached location, else get real location.
+                var location = await Geolocation.Default.GetLastKnownLocationAsync();
+                if (location == null)
+                {
+                    location = await Geolocation.Default.GetLocationAsync(new GeolocationRequest
+                    {
+                        DesiredAccuracy = GeolocationAccuracy.High,
+                        Timeout = TimeSpan.FromSeconds(30)
+                    });
+                }
+                IEnumerable<Placemark> places = await Geocoding.Default.GetPlacemarksAsync(location.Latitude,location.Longitude);
+                var place = places.FirstOrDefault();
+                State = true;
+                CurrentLocation = new Locations { Latitude = location.Latitude, Longitude = location.Longitude, Name = place.Locality };
+                SearchWeather(CurrentLocation);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Unable to query location: {ex.Message}");
+                await Shell.Current.DisplayAlert("Error!", ex.Message, "OK");
+            }
+        }
+
+        #endregion
+
         [RelayCommand]
         public async void SearchCity()
         {
@@ -95,8 +133,6 @@ namespace Progetto.ModelView
             await File.WriteAllTextAsync(path, json);
         }
 
-        
-
         public async void SearchWeather(Locations CurrentLocation)
         {
             //DateTime data = DateTime.Now;
@@ -110,7 +146,10 @@ namespace Progetto.ModelView
                 return;
             }
             OpenMeteoForecast? forecast = await response.Content.ReadFromJsonAsync<OpenMeteoForecast>();
-            if (forecast != null) Current = forecast.CurrentWeather;
+            if (forecast != null) 
+            {
+                Current = forecast.CurrentWeather;
+            }
         }
 
         public async Task GeoCod(string city)
@@ -124,6 +163,7 @@ namespace Progetto.ModelView
                 if (geocodingResult != null)
                 {
                     CurrentLocation = new Locations() { Name = geocodingResult.Results[0].Name, Latitude = geocodingResult.Results[0].Latitude, Longitude = geocodingResult.Results[0].Longitude };
+                    State = true;
                 }
             }
         }

@@ -8,10 +8,10 @@
              x:DataType="ViewModel:ModelViewDetails">
     <VerticalStackLayout>
         <Label Text="{Binding ClickedHour.Temperature2m, StringFormat='TEMPERATURA: {0}°'}" TextColor="White"/>
-        <Label Text="{Binding ClickedHour.PressureMsl, StringFormat='PRESSIONE: {0}'}"/>
+        <Label Text="{Binding ClickedHour.PressureMsl, StringFormat='PRESSIONE: {0}Pa'}"/>
         <Label Text="{Binding ClickedHour.Rain, StringFormat='PROBABILITA DI PIOGGIA: {0}%'}"/>
         <Label Text="{Binding ClickedHour.Showers, StringFormat='PIOGGERELLA: {0}%'}"/>
-        <Label Text="{Binding ClickedHour.Visibility, StringFormat='VISIBILITA: {0}%'}"/>
+        <Label Text="{Binding ClickedHour.Visibility, StringFormat='VISIBILITA: {0}m'}"/>
         <Label Text="{Binding ClickedHour.weather, StringFormat='TEMPO: {0}'}"/>
         <Label Text="{Binding ClickedHour.Windspeed10m, StringFormat='VELOCITA DEL VENTO: {0} km/h'}"/>
     </VerticalStackLayout>

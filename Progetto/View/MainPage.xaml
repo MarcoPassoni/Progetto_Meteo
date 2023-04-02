@@ -12,7 +12,10 @@
     
     <VerticalStackLayout BackgroundColor="Cyan">
         <Label x:Name="label_titolo"  Text="METEO" FontSize="30" Margin="130,0,0,0"/>
-        <SearchBar HeightRequest="30" WidthRequest="300" BackgroundColor="Blue" Text="{Binding Text}" SearchCommand="{Binding SearchCityCommand}" Placeholder="inserisci il comune"/>
+        <HorizontalStackLayout>
+            <SearchBar HeightRequest="30" WidthRequest="300" BackgroundColor="Blue" Text="{Binding Text}" SearchCommand="{Binding SearchCityCommand}" Placeholder="inserisci il comune"/>
+            <ImageButton Source="satellite.png" HeightRequest="60" WidthRequest="60" Command="{Binding GetCurrentLocationCommand}"/>
+        </HorizontalStackLayout>
         <Label Text="{Binding Location.Name}" Margin="130,0,0,0"/>
         <Button Text="Metti nei preferiti" Command="{Binding PlaceInPreferencesCommand}"/>
         <CollectionView ItemsSource="{Binding PreferencesCities}">
@@ -23,5 +26,6 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
         <Button Text="vai ai dettagli" Command="{Binding GoToDetailsWithoutObjectCommand}"/>
+        <Label x:Name="foundCity" Text="CITTA' TROVATA" IsVisible="{Binding State}" TextColor="Black"/>
     </VerticalStackLayout>
 </ContentPage>
