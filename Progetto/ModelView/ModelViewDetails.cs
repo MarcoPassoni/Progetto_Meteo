@@ -1,11 +1,14 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Maui.Controls;
+using Microsoft.Maui.Controls.PlatformConfiguration.TizenSpecific;
 using Progetto.Model;
 using Progetto.View;
 using System;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Net.Http.Json;
+using System.Text;
 using System.Text.Json;
 
 namespace Progetto.ModelView
@@ -15,11 +18,14 @@ namespace Progetto.ModelView
         public delegate Task RemoveHandler(Locations loc);
         public event RemoveHandler Remove;
 
-        private static HttpClient? client = new HttpClient();
+        private static HttpClient client = new HttpClient();
 
         [ObservableProperty]
         public Locations location;
- 
+
+        [ObservableProperty]
+        public string path;
+
         [ObservableProperty]
         public CurrentWeather current;
 
@@ -129,6 +135,7 @@ namespace Progetto.ModelView
             Weather = result;
         }
         #endregion
+
         public void CreationVariable()
         {
             int j = 0;
@@ -165,7 +172,5 @@ namespace Progetto.ModelView
         {
             await Remove(Location);
         }
-
-        
     }
 }

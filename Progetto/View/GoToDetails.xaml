@@ -11,11 +11,13 @@
              >
 
     <VerticalStackLayout>
-        <Label Text="{Binding Location.Name, StringFormat='Città: {0}'}" TextColor="White"/>
-        <Label Text="{Binding Current.Temperature, StringFormat='Temperatura: {0}°'}" TextColor="White"/>
-        <Label Text="{Binding Weather, StringFormat='Tempo: {0}'}" TextColor="White"/>
-        <Button Text="togli dai preferiti" Command="{Binding RemoveInPreferencesCommand}" BackgroundColor="#bde0fe"/>
-        <Button Text="guarda tempo settimana" Command="{Binding ViewTheWeekCommand}" BackgroundColor="#bde0fe"/>
+        <Label Text="{Binding Location.Name, StringFormat='Città: {0}'}" TextColor="White" FontSize="30" FontFamily="Insanibu"/>
+        <HorizontalStackLayout>
+            <Label Text="{Binding Current.Temperature, StringFormat='Temperatura: {0}°'}" FontSize="30" TextColor="White" FontFamily="Insanibu" Margin="0,25,0,0"/>
+            <Image Source="{Binding Current.IconPath}" HeightRequest="60" WidthRequest="60"/>
+        </HorizontalStackLayout>
+        <Label Text="{Binding Weather, StringFormat='Tempo: {0}'}" TextColor="White" FontSize="30" FontFamily="Insanibu" Margin="0,25,0,0"/>
+        <Button Text="togli dai preferiti" Command="{Binding RemoveInPreferencesCommand}" FontSize="30" FontFamily="Insanibu" BackgroundColor="#bde0fe" Margin="0,25,0,0"/>
+        <Button Text="guarda tempo settimana" Command="{Binding ViewTheWeekCommand}" FontSize="30" FontFamily="Insanibu" BackgroundColor="#bde0fe" Margin="0,25,0,0"/>
     </VerticalStackLayout>
 </ContentPage>
-    

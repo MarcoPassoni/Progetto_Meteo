@@ -27,7 +27,9 @@ namespace Progetto.Model
             Winddirection10mDominant = winddirection10mDominant;
             hourlies = hourly;
             TrovaTempo();
+            iconPath = ViewWeatherIcon();
         }
+        public string iconPath { get; set; }
         public string Weather { get; set; }
         public List<Ore> hourlies { get; set; }
         public DateTime Time { get; set; }
@@ -79,7 +81,43 @@ namespace Progetto.Model
                 _ => string.Empty,
             };
         }
-
+        public string ViewWeatherIcon()
+        {
+            int? code = Weathercode;
+            string result = code switch
+            {
+                0 => "sole_pieno.png",
+                1 => "prevalentemente limpido",
+                2 => "nuvole.png",
+                3 => "coperto",
+                45 => "nebbia.png",
+                48 => "nebbia.png",
+                51 => "pioggerella.png",
+                53 => "pioggerellina di moderata intensità",
+                55 => "pioggerellina intensa",
+                56 => "pioggerellina gelata di scarsa intensità",
+                57 => "pioggerellina gelata intensa",
+                61 => "pioggia di scarsa intensità",
+                63 => "pioggia di moderata intensità",
+                65 => "acquazzone.png",
+                66 => "pioggia_neve",
+                67 => "pioggia_neve.png",
+                71 => "nevicata_sottile.png",
+                73 => "pioggia_neve.png",
+                75 => "nevicata_intensa.png",
+                77 => "grandine.png",
+                80 => "pioggia_pochissima.png",
+                81 => "pioggia.png",
+                82 => "violenti rovesci di pioggia",
+                85 => "leggeri rovesci di neve",
+                86 => "nevicata_intensa.png",
+                95 => "pioggia.png",
+                96 => "grandine.png",
+                99 => "tempesta.png",
+                _ => string.Empty,
+            };
+            return result;
+        }
         private DateTime UnixTimeStampToDateTime(int unixTimeStamp)
         {
             DateTime dateTime = new(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
