@@ -19,8 +19,17 @@ namespace Progetto.Model
         [JsonPropertyName("winddirection")]
         public double Winddirection { get; set; }
 
+        public int code;
         [JsonPropertyName("weathercode")]
-        public int Weathercode { get; set; }
+        public int Weathercode 
+        {
+            get => code;
+            set
+            {
+                code = value;
+                IconPath = ViewWeatherIcon();
+            }
+        }
 
         [JsonPropertyName("time")]
         public int Time { get; set; }
@@ -29,7 +38,6 @@ namespace Progetto.Model
 
         public CurrentWeather()
         {
-            IconPath = ViewWeatherIcon();
         }
 
         public string ViewWeatherIcon()
@@ -40,7 +48,7 @@ namespace Progetto.Model
                 0 => "sole_pieno.png",
                 1 => "prevalentemente limpido",
                 2 => "nuvole.png",
-                3 => "coperto",
+                3 => "nuvole.png",
                 45 => "nebbia.png",
                 48 => "nebbia.png",
                 51 => "pioggerella.png",

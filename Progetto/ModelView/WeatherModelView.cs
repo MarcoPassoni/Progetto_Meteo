@@ -36,6 +36,8 @@ namespace Progetto.ModelView
         [ObservableProperty]
         private CurrentWeather current;
 
+        
+
         public WeatherModelView()
         {
             string path = FileSystem.AppDataDirectory + "/preferencesCities.json";
