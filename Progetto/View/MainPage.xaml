@@ -4,28 +4,25 @@
              x:Class="Progetto.View.MainPage"
              xmlns:ViewModel="clr-namespace:Progetto.ModelView"
              xmlns:Model="clr-namespace:Progetto.Model"
-             BackgroundColor="#bde0fe">
+             BackgroundColor="#a2d2ff"
+             Padding="10">
     
     <ContentPage.BindingContext>
         <ViewModel:WeatherModelView/>
     </ContentPage.BindingContext>
-    
-    <VerticalStackLayout BackgroundColor="Cyan">
-        <Label x:Name="label_titolo"  Text="METEO" FontSize="30" Margin="130,0,0,0"/>
-        <HorizontalStackLayout>
-            <SearchBar HeightRequest="30" WidthRequest="300" BackgroundColor="Blue" Text="{Binding Text}" SearchCommand="{Binding SearchCityCommand}" Placeholder="inserisci il comune"/>
-            <ImageButton Source="satellite.png" HeightRequest="60" WidthRequest="60" Command="{Binding GetCurrentLocationCommand}"/>
+
+    <VerticalStackLayout>
+        <HorizontalStackLayout HorizontalOptions="Center">
+            <Label  Text="METEO" FontSize="70" Margin="0,0,0,0" TextColor="Black" FontFamily="Insanibu"/>
         </HorizontalStackLayout>
-        <Label Text="{Binding Location.Name}" Margin="130,0,0,0"/>
-        <Button Text="Metti nei preferiti" Command="{Binding PlaceInPreferencesCommand}"/>
-        <CollectionView ItemsSource="{Binding PreferencesCities}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="Model:Locations">
-                    <Label Text="{Binding Name, StringFormat='città: {0:F0}'}" TextColor="Black"/>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-        <Button Text="vai ai dettagli" Command="{Binding GoToDetailsWithoutObjectCommand}"/>
-        <Label x:Name="foundCity" Text="CITTA' TROVATA" IsVisible="{Binding State}" TextColor="Black"/>
+        <HorizontalStackLayout>
+            <SearchBar HeightRequest="40" WidthRequest="300" BackgroundColor="#bde0fe" TextColor="Black" FontFamily="Insanibu" Text="{Binding Text}" SearchCommand="{Binding SearchCityCommand}" PlaceholderColor="Black" Placeholder="inserisci il comune"/>
+            <ImageButton Source="geolocation.png" HeightRequest="50" WidthRequest="50" Command="{Binding GetCurrentLocationCommand}"/>
+        </HorizontalStackLayout>
+
+        <Button HeightRequest="60" Margin="0,40,0,40" Text="Metti nei preferiti" Command="{Binding PlaceInPreferencesCommand}" BackgroundColor="#bde0fe" FontSize="20" TextColor="Black" FontFamily="Insanibu" BorderColor="black" BorderWidth="1"/>
+        <Button HeightRequest="60" Text="vai ai dettagli" Command="{Binding GoToDetailsWithoutObjectCommand}" BackgroundColor="#bde0fe" TextColor="Black" FontSize="20" FontFamily="Insanibu" BorderColor="black" BorderWidth="1"/>
+
+        <Label x:Name="foundCity" Margin="70,40,0,0" FontSize="30" Text="CITTA' TROVATA" IsVisible="{Binding State}" TextColor="Black" FontFamily="Insanibu"/>
     </VerticalStackLayout>
 </ContentPage>

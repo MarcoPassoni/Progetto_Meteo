@@ -5,20 +5,53 @@
              Title="ViewTheDay"
              xmlns:ViewModel="clr-namespace:Progetto.ModelView"
              xmlns:Model="clr-namespace:Progetto.Model"
-             x:DataType="ViewModel:ModelViewDetails">
+             x:DataType="ViewModel:ModelViewDetails"
+             BackgroundColor="#a2d2ff"
+             Padding="10">
 
     <VerticalStackLayout>
-        <Label Text="{Binding Clicked.Temperature2mMax, StringFormat='TEMPERATURA MASSIMA: {0}°'}"/>
-        <Label Text="{Binding Clicked.Temperature2mMin, StringFormat='TEMPERATURA MINIMA: {0}°'}"/>
-        <Label Text="{Binding Clicked.PrecipitationProbabilityMax, StringFormat='PROBABILITA DI PIOGGIA: {0}%'}"/>
-        <Label Text="{Binding Clicked.RainSum, StringFormat='PIOGGIA: {0}%'}"/>
-        <Label Text="{Binding Clicked.ShowersSum, StringFormat='PIOGGIERELLA: {0}%'}"/>
-        <Label Text="{Binding Clicked.Sunrise, StringFormat='ORA DI ALBA: {0:HH:mm}'}"/>
-        <Label Text="{Binding Clicked.Sunset, StringFormat='ORA DI TRAMONTO: {0:HH:mm}'}"/>
-        <Label Text="{Binding Weather, StringFormat='TEMPO: {0}'}"/>
-        <Label Text="{Binding Clicked.Windgusts10mMin, StringFormat='VELOCITA MASSIMA DEL VENTO: {0} km/h'}"/>
-        <Label Text="{Binding Clicked.Windspeed10mMax, StringFormat='VELOCITA MINIMA DEL VENTO: {0} km/h'}"/>
-        
+        <Grid ColumnDefinitions="*,auto" RowDefinitions="*,*,*,*,*,*,*,*,*,*" RowSpacing="10">
+            <HorizontalStackLayout  Grid.Row="0">
+                <Label Text="{Binding Clicked.Temperature2mMax, StringFormat='TEMPERATURA MASSIMA: {0}°'}" FontSize="20" TextColor="Black" FontFamily="Insanibu"/>
+                <Image Source="{Binding Clicked.iconPath}"/>
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout Grid.Row="1">
+                <Label Text="{Binding Clicked.Temperature2mMin, StringFormat='TEMPERATURA MINIMA: {0}°'}" FontSize="20" TextColor="Black" FontFamily="Insanibu"/>
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout Grid.Row="2">
+                <Label Text="{Binding Clicked.PrecipitationProbabilityMax, StringFormat='PROBABILITA DI PIOGGIA: {0}%'}" FontSize="20" TextColor="Black" FontFamily="Insanibu"/>
+            </HorizontalStackLayout>
+            
+            <HorizontalStackLayout Grid.Row="3">
+                <Label Text="{Binding Clicked.RainSum, StringFormat='PIOGGIA: {0}%'}" FontSize="20" TextColor="Black" FontFamily="Insanibu"/>
+            </HorizontalStackLayout>
+            
+            <HorizontalStackLayout Grid.Row="4">
+                <Label Text="{Binding Clicked.ShowersSum, StringFormat='PIOGGIERELLA: {0}%'}" FontSize="20" TextColor="Black" FontFamily="Insanibu"/>
+            </HorizontalStackLayout>
+            
+            <HorizontalStackLayout Grid.Row="5">
+                <Label Text="{Binding Clicked.Sunrise, StringFormat='ORA DI ALBA: {0:HH:mm}'}" FontSize="20" TextColor="Black" FontFamily="Insanibu"/>
+            </HorizontalStackLayout>
+            
+            <HorizontalStackLayout Grid.Row="6">
+                <Label Text="{Binding Clicked.Sunset, StringFormat='ORA DI TRAMONTO: {0:HH:mm}'}" FontSize="20" TextColor="Black" FontFamily="Insanibu"/>
+            </HorizontalStackLayout>
+            
+            <HorizontalStackLayout  Grid.Row="7">
+                <Label Text="{Binding Weather, StringFormat='TEMPO: {0}'}" FontSize="20" TextColor="Black" FontFamily="Insanibu"/>
+            </HorizontalStackLayout>
+            
+            <HorizontalStackLayout  Grid.Row="8">
+                <Label Text="{Binding Clicked.Windgusts10mMin, StringFormat='VELOCITA MASSIMA DEL VENTO: {0} km/h'}" FontSize="15" TextColor="Black" FontFamily="Insanibu"/>
+            </HorizontalStackLayout>
+            
+            <HorizontalStackLayout Grid.Row="9">
+                <Label Text="{Binding Clicked.Windspeed10mMax, StringFormat='VELOCITA MINIMA DEL VENTO: {0} km/h'}" FontSize="15" TextColor="Black" FontFamily="Insanibu"/>
+            </HorizontalStackLayout>
+        </Grid>
         <Button Text="guarda le ore" Command="{Binding ViewWeatherForHourCommand}"/>
     </VerticalStackLayout>
 </ContentPage>

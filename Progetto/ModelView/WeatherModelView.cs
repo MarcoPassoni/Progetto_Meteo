@@ -34,6 +34,9 @@ namespace Progetto.ModelView
         public bool state = false;
 
         [ObservableProperty]
+        public bool thereIs = false;
+
+        [ObservableProperty]
         private CurrentWeather current;
 
         
@@ -44,6 +47,16 @@ namespace Progetto.ModelView
             if (File.Exists(path))
             {
                 PreferencesCities = JsonSerializer.Deserialize<ObservableCollection<Locations>>(File.ReadAllText(path));
+            }
+            ControlloPreferiti();
+        }
+
+        public void ControlloPreferiti()
+        {
+            if (PreferencesCities.Count == 0)
+            {
+                ThereIs = true;
+                return;
             }
         }
 

@@ -4,14 +4,18 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
         x:Class="Progetto.View.home">
     <TabBar>
-        <Tab Title="Options" Icon="option.png">
-            <ShellContent ContentTemplate="{DataTemplate local:Options}"/>
-        </Tab>
+
         <Tab Title="Home" Icon="home.png">
             <ShellContent ContentTemplate="{DataTemplate local:DefaultPage}"/>
         </Tab>
+        
         <Tab Title="Search" Icon="search.png">
             <ShellContent ContentTemplate="{DataTemplate local:MainPage}"/>
         </Tab>
+     
+        <Tab Title="Options" Icon="option.png">
+            <ShellContent ContentTemplate="{DataTemplate local:Options}"/>
+        </Tab>
+        
     </TabBar>
 </Shell>

@@ -2,33 +2,38 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Progetto.View.ViewTheWeek"
-             Title="ViewTheWeek"
+             Title="{Binding Location.Name, StringFormat='Settimana a {0}'}"
              xmlns:ViewModel="clr-namespace:Progetto.ModelView"
              xmlns:Model="clr-namespace:Progetto.Model"
-             x:DataType="ViewModel:ModelViewDetails">
+             x:DataType="ViewModel:ModelViewDetails"
+             BackgroundColor="#a2d2ff"
+             Padding="5">
 
     <CollectionView ItemsSource="{Binding DailyMeteo}">
         <CollectionView.ItemTemplate>
             <DataTemplate x:DataType="Model:DailyMeteo">
-                <Frame>
+                <Frame BackgroundColor="#bde0fe" Margin="0,20,0,0">
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer
                         Command="{Binding Source={RelativeSource AncestorType={x:Type ViewModel:ModelViewDetails}}, Path=ViewTheDayCommand}"
                         CommandParameter="{Binding .}"/>
                     </Frame.GestureRecognizers>
-                    <Grid Padding="0" ColumnDefinitions="Auto,*">
+                    <Grid Padding="0" ColumnDefinitions="auto,*">
                         <VerticalStackLayout
                                     Grid.Column="0"
                                     VerticalOptions="Start"
                                     Padding="4">
                             <Label Text="{Binding Time, StringFormat='{0:dd MMM }'}" TextColor="Black" FontSize="15" FontFamily="Insanibu"/>
                         </VerticalStackLayout>
-                        
                         <VerticalStackLayout
                                     Grid.Column="1"
                                     VerticalOptions="Start"
                                     Padding="4">
                             <Label Text="{Binding Weather, StringFormat='{0}'}" TextColor="Black" FontSize="15" FontFamily="Insanibu"/>
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout Grid.Column="2" VerticalOptions="Start" HorizontalOptions="End">
+                            <Image Source="{Binding iconPath}" HeightRequest="20" WidthRequest="20"/>
                         </VerticalStackLayout>
                     </Grid>
                 </Frame>

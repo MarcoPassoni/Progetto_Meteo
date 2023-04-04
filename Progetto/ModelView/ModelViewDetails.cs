@@ -43,6 +43,7 @@ namespace Progetto.ModelView
         [ObservableProperty]
         public string weather;
 
+
         public ModelViewDetails(Locations location)
         {
 
@@ -135,6 +136,8 @@ namespace Progetto.ModelView
             Weather = result;
         }
         #endregion
+
+        
 
         public void CreationVariable()
         {

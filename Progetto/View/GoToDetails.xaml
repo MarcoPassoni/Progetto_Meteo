@@ -5,7 +5,7 @@
              xmlns:ViewModel="clr-namespace:Progetto.ModelView"
              xmlns:Model="clr-namespace:Progetto.Model"
              x:DataType="ViewModel:ModelViewDetails"
-             Title="GoToDetails" 
+             Title="{Binding Location.Name}"
              BackgroundColor="#a2d2ff"
              Padding="8"
              >
