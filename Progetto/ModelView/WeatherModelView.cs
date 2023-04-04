@@ -91,9 +91,11 @@ namespace Progetto.ModelView
                 }
                 IEnumerable<Placemark> places = await Geocoding.Default.GetPlacemarksAsync(location.Latitude,location.Longitude);
                 var place = places.FirstOrDefault();
-                State = true;
                 CurrentLocation = new Locations { Latitude = location.Latitude, Longitude = location.Longitude, Name = place.Locality };
                 SearchWeather(CurrentLocation);
+                State = true;
+                await Task.Delay(5000);
+                State = false;
             }
             catch (Exception ex)
             {
@@ -166,6 +168,9 @@ namespace Progetto.ModelView
                 {
                     CurrentLocation = new Locations() { Name = geocodingResult.Results[0].Name, Latitude = geocodingResult.Results[0].Latitude, Longitude = geocodingResult.Results[0].Longitude };
                     State = true;
+                    await Task.Delay(5000);
+                    State = false;
+                    //await Task.Delay(1000);
                 }
             }
         }
