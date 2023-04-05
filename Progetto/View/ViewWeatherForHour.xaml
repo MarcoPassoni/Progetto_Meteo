@@ -20,16 +20,13 @@
                     </Frame.GestureRecognizers>
                     <Grid Padding="0" ColumnDefinitions="50,*,*,*,*">
                         <Label Text="{Binding Time, StringFormat='{0:HH}'}"  TextColor="Black" FontSize="15" FontFamily="Insanibu" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center"/>
-                        <Label Text="{Binding weather}"  TextColor="Black" FontSize="15" FontFamily="Insanibu" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center"/>
+                        <Label Text="{Binding Weather}" TextColor="Black" FontSize="15" FontFamily="Insanibu" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center"/>
                         <Label Text="{Binding Temperature2m, StringFormat='{0}°'}"  TextColor="Black" FontSize="15" FontFamily="Insanibu" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center"/>
                         <Label Text="{Binding Visibility, StringFormat='visibilità {0}m'}"  TextColor="Black" FontSize="14" FontFamily="Insanibu" Grid.Column="3" HorizontalOptions="Start" VerticalOptions="Center"/>
-                        <Image Source="{Binding Path}" Grid.Column="4" HeightRequest="30" WidthRequest="30" HorizontalOptions="End" VerticalOptions="Center"/>
+                        <Image Source="{Binding IconPath}" Grid.Column="4" HeightRequest="30" WidthRequest="30" HorizontalOptions="End" VerticalOptions="Center"/>
                     </Grid>
                 </Frame>
             </DataTemplate>
         </CollectionView.ItemTemplate>
     </CollectionView>
 </ContentPage>
-    
-    
-    

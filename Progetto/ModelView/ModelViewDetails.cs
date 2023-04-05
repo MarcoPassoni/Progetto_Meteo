@@ -86,8 +86,10 @@ namespace Progetto.ModelView
         }
 
         [RelayCommand]
-        public async void ViewWeatherForHour()
+        public async void ViewWeatherForHour(object obj)
         {
+            if (obj == null || !(obj is DailyMeteo)) return;
+            Clicked = (DailyMeteo)obj;
             await App.Current.MainPage.Navigation.PushAsync(new ViewWeatherForHour(this));
         }
 
