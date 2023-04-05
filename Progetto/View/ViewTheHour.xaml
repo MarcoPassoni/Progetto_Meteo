@@ -6,6 +6,7 @@
              xmlns:ViewModel="clr-namespace:Progetto.ModelView"
              xmlns:Model="clr-namespace:Progetto.Model"
              x:DataType="ViewModel:ModelViewDetails">
+    
     <VerticalStackLayout>
         <Label Text="{Binding ClickedHour.Temperature2m, StringFormat='TEMPERATURA: {0}°'}" TextColor="White"/>
         <Label Text="{Binding ClickedHour.PressureMsl, StringFormat='PRESSIONE: {0}Pa'}"/>

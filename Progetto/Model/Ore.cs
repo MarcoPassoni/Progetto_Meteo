@@ -14,6 +14,7 @@ namespace Progetto.Model
         public Ore()
         {
             TrovaTempo();
+            Path = ViewWeatherIcon();
         }
 
         [JsonPropertyName("weather")]
@@ -34,6 +35,7 @@ namespace Progetto.Model
         public double Visibility { get; set; }
         [JsonPropertyName("windspeed_10m")]
         public double Windspeed10m { get; set; }
+        public string Path { get; set; }    
 
         public void TrovaTempo()
         {
@@ -70,6 +72,43 @@ namespace Progetto.Model
                 99 => "temporale con forte grandine",
                 _ => string.Empty,
             };
+        }
+        public string ViewWeatherIcon()
+        {
+            int? code = Weathercode;
+            string result = code switch
+            {
+                0 => "sole_pieno.png",
+                1 => "sole_pieno.png",
+                2 => "nuvole.png",
+                3 => "nuvole.png",
+                45 => "nebbia.png",
+                48 => "nebbia.png",
+                51 => "pioggerella.png",
+                53 => "pioggia_pochissima.png",
+                55 => "pioggia_poca",
+                56 => "pioggia_neve.png",
+                57 => "grandine.png",
+                61 => "pioggia_poca",
+                63 => "pioggia.png",
+                65 => "acquazzone.png",
+                66 => "pioggia_neve.png",
+                67 => "pioggia_neve.png",
+                71 => "nevicata_sottile.png",
+                73 => "pioggia_neve.png",
+                75 => "nevicata_intensa.png",
+                77 => "grandine.png",
+                80 => "pioggia_pochissima.png",
+                81 => "pioggia.png",
+                82 => "acquazzone.png",
+                85 => "nevicata_sottile.png",
+                86 => "nevicata_intensa.png",
+                95 => "pioggia.png",
+                96 => "grandine.png",
+                99 => "tempesta.png",
+                _ => string.Empty,
+            };
+            return result;
         }
     }
 }

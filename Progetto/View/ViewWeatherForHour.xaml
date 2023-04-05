@@ -5,19 +5,25 @@
              Title="ViewWeatherForHour"
              xmlns:ViewModel="clr-namespace:Progetto.ModelView"
              xmlns:Model="clr-namespace:Progetto.Model"
-             x:DataType="ViewModel:ModelViewDetails">
+             x:DataType="ViewModel:ModelViewDetails"
+             BackgroundColor="#a2d2ff"
+             Padding="8">
 
     <CollectionView ItemsSource="{Binding Clicked.hourlies}">
         <CollectionView.ItemTemplate>
             <DataTemplate x:DataType="Model:Ore">
-                <Frame>
+                <Frame BackgroundColor="#bde0fe" Margin="0,15,0,0">
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer
                         Command="{Binding Source={RelativeSource AncestorType={x:Type ViewModel:ModelViewDetails}}, Path=ViewTheHourCommand}"
                         CommandParameter="{Binding .}"/>
                     </Frame.GestureRecognizers>
-                    <Grid Padding="0" ColumnDefinitions="40,*">
-                        <Label Text="{Binding Time, StringFormat='{0:HH}'}" TextColor="Black"/>
+                    <Grid Padding="0" ColumnDefinitions="50,*,*,*,*">
+                        <Label Text="{Binding Time, StringFormat='{0:HH}'}"  TextColor="Black" FontSize="15" FontFamily="Insanibu" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center"/>
+                        <Label Text="{Binding weather}"  TextColor="Black" FontSize="15" FontFamily="Insanibu" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center"/>
+                        <Label Text="{Binding Temperature2m, StringFormat='{0}°'}"  TextColor="Black" FontSize="15" FontFamily="Insanibu" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        <Label Text="{Binding Visibility, StringFormat='visibilità {0}m'}"  TextColor="Black" FontSize="14" FontFamily="Insanibu" Grid.Column="3" HorizontalOptions="Start" VerticalOptions="Center"/>
+                        <Image Source="{Binding Path}" Grid.Column="4" HeightRequest="30" WidthRequest="30" HorizontalOptions="End" VerticalOptions="Center"/>
                     </Grid>
                 </Frame>
             </DataTemplate>
@@ -27,4 +33,3 @@
     
     
     
-  

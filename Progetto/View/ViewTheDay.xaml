@@ -38,7 +38,7 @@
             <Label Text="{Binding Clicked.Windspeed10mMax, StringFormat='VELOCITA MIN: {0} km/h'}" FontSize="23" TextColor="Black" FontFamily="Insanibu" Grid.Row="7" VerticalOptions="Center"/>
             <Image Source="vento.png" HeightRequest="35" WidthRequest="35" HorizontalOptions="End" Grid.Row="7" VerticalOptions="Center"/>
 
+            <Button Text="guarda le ore" Command="{Binding ViewWeatherForHourCommand}" Margin="0,30,0,0" Grid.Row="8" VerticalOptions="Center"/>
         </Grid>
-        <Button Text="guarda le ore" Command="{Binding ViewWeatherForHourCommand}" Margin="0,30,0,0"/>
     </VerticalStackLayout>
 </ContentPage>
