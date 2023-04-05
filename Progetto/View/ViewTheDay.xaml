@@ -10,53 +10,35 @@
              Padding="10">
 
     <VerticalStackLayout>
-        <Grid ColumnDefinitions="*,auto" RowDefinitions="*,*,*,*,*,*,*,*,*,*" RowSpacing="10">
-            <HorizontalStackLayout  Grid.Row="0">
-                <Label Text="{Binding Clicked.Temperature2mMax, StringFormat='TEMPERATURA MASSIMA: {0}°'}" FontSize="20" TextColor="Black" FontFamily="Insanibu"/>
-                <Image Source="temp_max.png"/>
-            </HorizontalStackLayout>
+        <Grid ColumnDefinitions="*,auto" RowDefinitions="*,*,*,*,*,*,*,*,*,*" RowSpacing="25">
 
-            <HorizontalStackLayout Grid.Row="1">
-                <Label Text="{Binding Clicked.Temperature2mMin, StringFormat='TEMPERATURA MINIMA: {0}°'}" FontSize="20" TextColor="Black" FontFamily="Insanibu"/>
-                <Image Source="temp_min.png"/>
-            </HorizontalStackLayout>
+            <Label Text="{Binding Clicked.Temperature2mMax, StringFormat='TEMPERATURA MASSIMA: {0}°'}" FontSize="23" TextColor="Black" FontFamily="Insanibu" VerticalOptions="Center"/>
+            <Image Source="temp_max.png" HeightRequest="35" WidthRequest="35" HorizontalOptions="End" VerticalOptions="Center"/>
 
-            <HorizontalStackLayout Grid.Row="2">
-                <Label Text="{Binding Clicked.PrecipitationProbabilityMax, StringFormat='PROBABILITA DI PIOGGIA: {0}%'}" FontSize="20" TextColor="Black" FontFamily="Insanibu"/>
-                <Image Source="umidita.png"/>
-            </HorizontalStackLayout>
-            
-            <HorizontalStackLayout Grid.Row="3">
-                <Label Text="{Binding Clicked.RainSum, StringFormat='PIOGGIA: {0}%'}" FontSize="20" TextColor="Black" FontFamily="Insanibu"/>
-                
-            </HorizontalStackLayout>
-            
-            <HorizontalStackLayout Grid.Row="4">
-                <Label Text="{Binding Clicked.ShowersSum, StringFormat='PIOGGIERELLA: {0}%'}" FontSize="20" TextColor="Black" FontFamily="Insanibu"/>
-            </HorizontalStackLayout>
-            
-            <HorizontalStackLayout Grid.Row="5">
-                <Label Text="{Binding Clicked.Sunrise, StringFormat='ORA DI ALBA: {0:HH:mm}'}" FontSize="20" TextColor="Black" FontFamily="Insanibu"/>
-            </HorizontalStackLayout>
-            
-            <HorizontalStackLayout Grid.Row="6">
-                <Label Text="{Binding Clicked.Sunset, StringFormat='ORA DI TRAMONTO: {0:HH:mm}'}" FontSize="20" TextColor="Black" FontFamily="Insanibu"/>
-            </HorizontalStackLayout>
-            
-            <HorizontalStackLayout  Grid.Row="7">
-                <Label Text="{Binding Weather, StringFormat='TEMPO: {0}'}" FontSize="20" TextColor="Black" FontFamily="Insanibu"/>
-                <Image Source="{Binding Clicked.iconPath}"/>
-            </HorizontalStackLayout>
-            
-            <HorizontalStackLayout  Grid.Row="8">
-                <Label Text="{Binding Clicked.Windgusts10mMin, StringFormat='VELOCITA MASSIMA DEL VENTO: {0} km/h'}" FontSize="15" TextColor="Black" FontFamily="Insanibu"/>
-            </HorizontalStackLayout>
-            
-            <HorizontalStackLayout Grid.Row="9">
-                <Label Text="{Binding Clicked.Windspeed10mMax, StringFormat='VELOCITA MINIMA DEL VENTO: {0} km/h'}" FontSize="15" TextColor="Black" FontFamily="Insanibu"/>
-            </HorizontalStackLayout>
-            
-            <Button Text="guarda le ore" Command="{Binding ViewWeatherForHourCommand}"/>
+            <Label Text="{Binding Clicked.Temperature2mMin, StringFormat='TEMPERATURA MINIMA: {0}°'}" FontSize="23" TextColor="Black" FontFamily="Insanibu"  Grid.Row="1" VerticalOptions="Center"/>
+            <Image Source="temp_min.png" HeightRequest="35" WidthRequest="35" Grid.Row="1" HorizontalOptions="End" VerticalOptions="Center"/>
+
+            <Label Text="{Binding Clicked.PrecipitationProbabilityMax, StringFormat='PROBABILITA DI PIOGGIA: {0}%'}" FontSize="23" TextColor="Black" FontFamily="Insanibu" Grid.Row="2" VerticalOptions="Center"/>
+            <Image Source="umidita.png" HeightRequest="35" WidthRequest="35" HorizontalOptions="End" Grid.Row="2" VerticalOptions="Center"/>
+
+            <Label Text="{Binding Clicked.Sunrise, StringFormat='ORA DI ALBA: {0:HH:mm}'}" FontSize="23" TextColor="Black" FontFamily="Insanibu" Grid.Row="3" VerticalOptions="Center"/>
+            <Image Source="alba.png" HeightRequest="35" WidthRequest="35" HorizontalOptions="End" Grid.Row="3" VerticalOptions="Center"/>
+
+
+            <Label Text="{Binding Clicked.Sunset, StringFormat='ORA DI TRAMONTO: {0:HH:mm}'}" FontSize="23" TextColor="Black" FontFamily="Insanibu" Grid.Row="4" VerticalOptions="Center"/>
+            <Image Source="tramonto.png" HeightRequest="35" WidthRequest="35" HorizontalOptions="End" Grid.Row="4" VerticalOptions="Center"/>
+
+
+            <Label Text="{Binding Weather, StringFormat='TEMPO: {0}'}" FontSize="23" TextColor="Black" FontFamily="Insanibu" Grid.Row="5"/>
+            <Image Source="{Binding Clicked.iconPath}" HeightRequest="35" WidthRequest="35" HorizontalOptions="End" Grid.Row="5" VerticalOptions="Center"/>
+
+            <Label Text="{Binding Clicked.Windgusts10mMin, StringFormat='VELOCITA MAX: {0} km/h'}" FontSize="23" TextColor="Black" FontFamily="Insanibu" Grid.Row="6" VerticalOptions="Center"/>
+            <Image Source="vento.png" HeightRequest="35" WidthRequest="35" HorizontalOptions="End" Grid.Row="6" VerticalOptions="Center"/>
+
+            <Label Text="{Binding Clicked.Windspeed10mMax, StringFormat='VELOCITA MIN: {0} km/h'}" FontSize="23" TextColor="Black" FontFamily="Insanibu" Grid.Row="7" VerticalOptions="Center"/>
+            <Image Source="vento.png" HeightRequest="35" WidthRequest="35" HorizontalOptions="End" Grid.Row="7" VerticalOptions="Center"/>
+
         </Grid>
+        <Button Text="guarda le ore" Command="{Binding ViewWeatherForHourCommand}" Margin="0,30,0,0"/>
     </VerticalStackLayout>
 </ContentPage>
