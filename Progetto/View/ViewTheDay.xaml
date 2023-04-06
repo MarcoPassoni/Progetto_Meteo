@@ -18,7 +18,7 @@
             <Label Text="{Binding Clicked.Temperature2mMin, StringFormat='TEMPERATURA MINIMA: {0}°'}" FontSize="23" TextColor="Black" FontFamily="Insanibu"  Grid.Row="1" VerticalOptions="Center"/>
             <Image Source="temp_min.png" HeightRequest="35" WidthRequest="35" Grid.Row="1" HorizontalOptions="End" VerticalOptions="Center"/>
 
-            <Label Text="{Binding Clicked.PrecipitationProbabilityMax, StringFormat='PROBABILITA DI PIOGGIA: {0}%'}" FontSize="23" TextColor="Black" FontFamily="Insanibu" Grid.Row="2" VerticalOptions="Center"/>
+            <Label Text="{Binding Clicked.PrecipitationProbabilityMax, StringFormat='PROBABILITA DI PIOGGIA: {0}%'}" FontSize="21" TextColor="Black" FontFamily="Insanibu" Grid.Row="2" VerticalOptions="Center"/>
             <Image Source="umidita.png" HeightRequest="35" WidthRequest="35" HorizontalOptions="End" Grid.Row="2" VerticalOptions="Center"/>
 
             <Label Text="{Binding Clicked.Sunrise, StringFormat='ORA DI ALBA: {0:HH:mm}'}" FontSize="23" TextColor="Black" FontFamily="Insanibu" Grid.Row="3" VerticalOptions="Center"/>
@@ -38,7 +38,8 @@
             <Label Text="{Binding Clicked.Windspeed10mMax, StringFormat='VELOCITA MIN: {0} km/h'}" FontSize="23" TextColor="Black" FontFamily="Insanibu" Grid.Row="7" VerticalOptions="Center"/>
             <Image Source="vento.png" HeightRequest="35" WidthRequest="35" HorizontalOptions="End" Grid.Row="7" VerticalOptions="Center"/>
 
-            <Button Text="guarda le ore" Command="{Binding ViewWeatherForHourCommand}" Margin="0,50,0,0" Grid.Row="8" VerticalOptions="Center" TextColor="Black" FontFamily="Insanibu" FontSize="20" HeightRequest="65" BackgroundColor="#bde0fe" BorderColor="Black" BorderWidth="1"/>
+            
+            <Button Text="guarda le ore" Command="{Binding ViewWeatherForHourCommand}" Margin="0,50,0,0" Grid.Row="8" VerticalOptions="Center" TextColor="Black" FontFamily="Insanibu" FontSize="20" HeightRequest="65" BackgroundColor="#bde0fe" BorderColor="Black" BorderWidth="1" CommandParameter="{Binding Clicked}"/>
         </Grid>
     </ScrollView>
 </ContentPage>

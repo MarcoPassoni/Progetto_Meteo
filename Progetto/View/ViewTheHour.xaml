@@ -5,15 +5,22 @@
              Title="ViewTheHour"
              xmlns:ViewModel="clr-namespace:Progetto.ModelView"
              xmlns:Model="clr-namespace:Progetto.Model"
-             x:DataType="ViewModel:ModelViewDetails">
-    
-    <VerticalStackLayout>
-        <Label Text="{Binding ClickedHour.Temperature2m, StringFormat='TEMPERATURA: {0}°'}" TextColor="White"/>
-        <Label Text="{Binding ClickedHour.PressureMsl, StringFormat='PRESSIONE: {0}Pa'}"/>
-        <Label Text="{Binding ClickedHour.Rain, StringFormat='PROBABILITA DI PIOGGIA: {0}%'}"/>
-        <Label Text="{Binding ClickedHour.Showers, StringFormat='PIOGGERELLA: {0}%'}"/>
-        <Label Text="{Binding ClickedHour.Visibility, StringFormat='VISIBILITA: {0}m'}"/>
-        <Label Text="{Binding ClickedHour.Weather, StringFormat='TEMPO: {0}'}"/>
-        <Label Text="{Binding ClickedHour.Windspeed10m, StringFormat='VELOCITA DEL VENTO: {0} km/h'}"/>
-    </VerticalStackLayout>
+             x:DataType="ViewModel:ModelViewDetails"
+             BackgroundColor="#a2d2ff"
+             Padding="8">
+
+    <Grid RowDefinitions="*,*,*,*,*,*" ColumnDefinitions="*,auto">
+        <Label Text="{Binding ClickedHour.Temperature2m, StringFormat='TEMPERATURA: {0}°'}" FontSize="23" TextColor="Black" FontFamily="Insanibu" Grid.Column="0" Grid.Row="0" VerticalOptions="Center"/>
+        <Image Source="temp.png" HeightRequest="50" WidthRequest="50" Grid.Column="1" Grid.Row="0" VerticalOptions="Center"/>
+        <Label Text="{Binding ClickedHour.PressureMsl, StringFormat='PRESSIONE: {0}Pa'}" FontSize="23" TextColor="Black" FontFamily="Insanibu" Grid.Column="0" Grid.Row="1" VerticalOptions="Center"/>
+        <Image Source="pressione.png" HeightRequest="50" WidthRequest="50" Grid.Column="1" Grid.Row="1" VerticalOptions="Center"/>
+        <Label Text="{Binding ClickedHour.Rain, StringFormat='Perc DI PIOGGIA: {0}%'}" FontSize="23" TextColor="Black" FontFamily="Insanibu" Grid.Column="0" Grid.Row="2" VerticalOptions="Center"/>
+        <Image Source="umidita.png" HeightRequest="50" WidthRequest="50" Grid.Column="1" Grid.Row="2" VerticalOptions="Center"/>
+        <Label Text="{Binding ClickedHour.Visibility, StringFormat='VISIBILITA: {0}m'}" FontSize="23" TextColor="Black" FontFamily="Insanibu" Grid.Column="0" Grid.Row="3" VerticalOptions="Center"/>
+        <Image Source="visibilita.png" HeightRequest="50" WidthRequest="50" Grid.Column="1" Grid.Row="3" VerticalOptions="Center"/>
+        <Label Text="{Binding ClickedHour.Weather, StringFormat='TEMPO: {0}'}" FontSize="23" TextColor="Black" FontFamily="Insanibu" Grid.Column="0" Grid.Row="4" VerticalOptions="Center"/>
+        <Image Source="{Binding ClickedHour.IconPath}" HeightRequest="50" WidthRequest="50" Grid.Column="1" Grid.Row="4" VerticalOptions="Center"/>
+        <Label Text="{Binding ClickedHour.Windspeed10m, StringFormat='VELOCITA DEL VENTO: {0} km/h'}" FontSize="20" TextColor="Black" FontFamily="Insanibu" Grid.Column="0" Grid.Row="5" VerticalOptions="Center"/>
+        <Image Source="vento.png" HeightRequest="50" WidthRequest="50" Grid.Column="1" Grid.Row="5" VerticalOptions="Center"/>
+    </Grid>
 </ContentPage>

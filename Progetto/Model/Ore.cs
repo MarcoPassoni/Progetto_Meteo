@@ -10,12 +10,7 @@ namespace Progetto.Model
 {
     public class Ore
     {
-
-        public Ore()
-        {
-            TrovaTempo();
-            IconPath = ViewWeatherIcon();
-        }
+        public int weathercode;
 
         [JsonPropertyName("weather")]
         public string Weather { get; set; }
@@ -28,7 +23,14 @@ namespace Progetto.Model
         [JsonPropertyName("showers")]
         public double Showers { get; set; }
         [JsonPropertyName("weathercode")]
-        public int Weathercode { get; set; }
+        public int Weathercode { get => weathercode; 
+            set 
+            {
+                weathercode = value;
+                Weather = TrovaTempo();
+                IconPath = ViewWeatherIcon();
+            }
+        }
         [JsonPropertyName("pressure_msl")]
         public double PressureMsl { get; set; }
         [JsonPropertyName("visibility")]
@@ -37,10 +39,10 @@ namespace Progetto.Model
         public double Windspeed10m { get; set; }
         public string IconPath { get; set; }    
 
-        public void TrovaTempo()
+        public string TrovaTempo()
         {
             int? code = Weathercode;
-            Weather = code switch
+            string result = code switch
             {
                 0 => "cielo sereno",
                 1 => "prevalentemente limpido",
@@ -72,6 +74,7 @@ namespace Progetto.Model
                 99 => "temporale con forte grandine",
                 _ => string.Empty,
             };
+            return result;
         }
         public string ViewWeatherIcon()
         {

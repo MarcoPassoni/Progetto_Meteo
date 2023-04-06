@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Progetto.View.ViewWeatherForHour"
-             Title="ViewWeatherForHour"
+             Title=""
              xmlns:ViewModel="clr-namespace:Progetto.ModelView"
              xmlns:Model="clr-namespace:Progetto.Model"
              x:DataType="ViewModel:ModelViewDetails"
@@ -20,7 +20,7 @@
                     </Frame.GestureRecognizers>
                     <Grid Padding="0" ColumnDefinitions="50,*,*,*,*">
                         <Label Text="{Binding Time, StringFormat='{0:HH}'}"  TextColor="Black" FontSize="15" FontFamily="Insanibu" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center"/>
-                        <Label Text="{Binding Weather}" TextColor="Black" FontSize="15" FontFamily="Insanibu" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center"/>
+                        <Label Text="{Binding Weather}" TextColor="Black" FontSize="8" FontFamily="Insanibu" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center"/>
                         <Label Text="{Binding Temperature2m, StringFormat='{0}°'}"  TextColor="Black" FontSize="15" FontFamily="Insanibu" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center"/>
                         <Label Text="{Binding Visibility, StringFormat='visibilità {0}m'}"  TextColor="Black" FontSize="14" FontFamily="Insanibu" Grid.Column="3" HorizontalOptions="Start" VerticalOptions="Center"/>
                         <Image Source="{Binding IconPath}" Grid.Column="4" HeightRequest="30" WidthRequest="30" HorizontalOptions="End" VerticalOptions="Center"/>

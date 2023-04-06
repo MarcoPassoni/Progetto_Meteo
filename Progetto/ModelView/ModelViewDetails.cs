@@ -43,6 +43,7 @@ namespace Progetto.ModelView
         [ObservableProperty]
         public string weather;
 
+        //public ObservableCollection<Ore> HourList { get; set; } = new ObservableCollection<Ore>(24);
 
         public ModelViewDetails(Locations location)
         {
@@ -90,6 +91,7 @@ namespace Progetto.ModelView
         {
             if (obj == null || !(obj is DailyMeteo)) return;
             Clicked = (DailyMeteo)obj;
+            //PopulateHour(Clicked);
             await App.Current.MainPage.Navigation.PushAsync(new ViewWeatherForHour(this));
         }
 
@@ -143,6 +145,7 @@ namespace Progetto.ModelView
 
         public void CreationVariable()
         {
+            DailyMeteo.Clear();
             int j = 0;
             for (int i = 0; i < MeteoForecast.Daily.Sunrise.Count; i++)
             {
@@ -155,6 +158,19 @@ namespace Progetto.ModelView
                 DailyMeteo.Add(new DailyMeteo(MeteoForecast.Daily.Time[i], MeteoForecast.Daily.Weathercode[i], MeteoForecast.Daily.Temperature2mMax[i], MeteoForecast.Daily.Temperature2mMin[i], UnixTimeStampToDateTime(MeteoForecast.Daily.Sunrise[i]), UnixTimeStampToDateTime(MeteoForecast.Daily.Sunset[i]), MeteoForecast.Daily.RainSum[i], MeteoForecast.Daily.ShowersSum[i], MeteoForecast.Daily.PrecipitationProbabilityMax[i], MeteoForecast.Daily.Windspeed10mMax[i], MeteoForecast.Daily.Windgusts10mMax[i], MeteoForecast.Daily.Winddirection10mDominant[i], oreList));
             }
         }
+
+
+        //public void PopulateHour(DailyMeteo cliked)
+        //{
+        //    List<Ore> oreList = new List<Ore>(24);
+
+        //    for (int j = 0; j < cliked.hourlies.Count; j++)
+        //    {
+        //        oreList.Add(new Ore() { PressureMsl = cliked.hourlies[j].PressureMsl, Rain = cliked.hourlies[j].Rain, Showers = cliked.hourlies[j].Showers, Temperature2m = cliked.hourlies[j].Temperature2m, Time = cliked.hourlies[j].Time, Visibility = cliked.hourlies[j].Visibility, Weathercode = cliked.hourlies[j].Weathercode, Windspeed10m = cliked.hourlies[j].Windspeed10m });
+        //    }
+        //}
+
+
 
         private async Task SearchWeather(Locations CurrentLocation)
         {
