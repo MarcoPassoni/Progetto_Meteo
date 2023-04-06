@@ -13,25 +13,25 @@
     <VerticalStackLayout>
         <Grid ColumnDefinitions="*,*" RowDefinitions="*,*,*,*,*" RowSpacing="15">
 
-            <Label Text="{Binding Current.Temperature, StringFormat='Temperatura: {0}°'}" FontSize="25" TextColor="White" FontFamily="Insanibu" VerticalOptions="Center"/>
+            <Label Text="{Binding Current.Temperature, StringFormat='Temperatura: {0}°'}" FontSize="25" FontFamily="Insanibu" VerticalOptions="Center"/>
             <Image Source="temperature.png" HeightRequest="60" WidthRequest="60" Grid.Column="1" HorizontalOptions="Center"/>
 
-            <Label Text="{Binding Location.Name, StringFormat='Città: {0}'}" TextColor="White" FontSize="25" FontFamily="Insanibu" Grid.Row="1" VerticalOptions="Center"/>
+            <Label Text="{Binding Location.Name, StringFormat='Città: {0}'}" FontSize="25" FontFamily="Insanibu" Grid.Row="1" VerticalOptions="Center"/>
             <Image Source="place.png" HeightRequest="60" WidthRequest="60" Grid.Column="1" Grid.Row="1"/>
 
-            <Label Text="{Binding Weather, StringFormat='Tempo: {0}'}" TextColor="White" FontSize="20" FontFamily="Insanibu" HeightRequest="80" Grid.Row="2" VerticalOptions="Center"/>
+            <Label Text="{Binding Weather, StringFormat='Tempo: {0}'}" FontSize="20" FontFamily="Insanibu" HeightRequest="80" Grid.Row="2" VerticalOptions="Center"/>
             <Image Source="{Binding Current.IconPath}" HeightRequest="60" WidthRequest="60" Grid.Column="1" Grid.Row="2"/>
 
-            <Label Text="{Binding Current.Windspeed, StringFormat='velocità: {0}km/h'}" TextColor="White" FontSize="30" FontFamily="Insanibu" Grid.Row="3" VerticalOptions="Center"/>
+            <Label Text="{Binding Current.Windspeed, StringFormat='velocità: {0}km/h'}" FontSize="30" FontFamily="Insanibu" Grid.Row="3" VerticalOptions="Center"/>
             <Image Source="vento.png" HeightRequest="60" WidthRequest="60" Grid.Column="1" Grid.Row="3"/>
 
-            <Label Text="{Binding Current.Winddirection, StringFormat='direzione: {0}°'}" TextColor="White" FontSize="30" FontFamily="Insanibu" Grid.Row="4" VerticalOptions="Center"/>
+            <Label Text="{Binding Current.Winddirection, StringFormat='direzione: {0}°'}" FontSize="30" FontFamily="Insanibu" Grid.Row="4" VerticalOptions="Center"/>
             <Image Source="direction.png" HeightRequest="60" WidthRequest="60" Grid.Column="1" Grid.Row="4"/>
 
         </Grid>
         <VerticalStackLayout>
-            <Button Text="togli dai preferiti" TextColor="Black" Command="{Binding RemoveInPreferencesCommand}" FontSize="30" FontFamily="Insanibu" BackgroundColor="#bde0fe" Margin="0,25,0,0" BorderColor="black" BorderWidth="1"/>
-            <Button Text="guarda tempo settimana" TextColor="Black" Command="{Binding ViewTheWeekCommand}" FontSize="30" FontFamily="Insanibu" BackgroundColor="#bde0fe" Margin="0,25,0,0" BorderColor="black" BorderWidth="1"/>
+            <Button Text="togli dai preferiti" Command="{Binding RemoveInPreferencesCommand}" FontSize="30" FontFamily="Insanibu" BackgroundColor="#bde0fe" Margin="0,25,0,0" BorderColor="black" BorderWidth="1"/>
+            <Button Text="guarda tempo settimana" Command="{Binding ViewTheWeekCommand}" FontSize="30" FontFamily="Insanibu" BackgroundColor="#bde0fe" Margin="0,25,0,0" BorderColor="black" BorderWidth="1"/>
         </VerticalStackLayout>
     </VerticalStackLayout>
 

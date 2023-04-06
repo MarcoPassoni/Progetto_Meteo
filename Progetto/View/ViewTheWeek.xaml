@@ -23,13 +23,13 @@
                                     Grid.Column="0"
                                     VerticalOptions="Start"
                                     Padding="4">
-                            <Label Text="{Binding Time, StringFormat='{0:dd MMM }'}" TextColor="Black" FontSize="15" FontFamily="Insanibu"/>
+                            <Label Text="{Binding Time, StringFormat='{0:dd MMM }'}" FontSize="15" FontFamily="Insanibu"/>
                         </VerticalStackLayout>
                         <VerticalStackLayout
                                     Grid.Column="1"
                                     VerticalOptions="Start"
                                     Padding="4">
-                            <Label Text="{Binding Weather, StringFormat='{0}'}" TextColor="Black" FontSize="15" FontFamily="Insanibu"/>
+                            <Label Text="{Binding Weather, StringFormat='{0}'}" FontSize="15" FontFamily="Insanibu"/>
                         </VerticalStackLayout>
 
                         <VerticalStackLayout Grid.Column="2" VerticalOptions="Start" HorizontalOptions="End">

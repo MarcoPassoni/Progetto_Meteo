@@ -13,16 +13,16 @@
 
     <VerticalStackLayout>
         <HorizontalStackLayout HorizontalOptions="Center">
-            <Label  Text="METEO" FontSize="70" Margin="0,0,0,0" TextColor="Black" FontFamily="Insanibu"/>
+            <Label  Text="METEO" FontSize="70" Margin="0,0,0,0" FontFamily="Insanibu"/>
         </HorizontalStackLayout>
         <HorizontalStackLayout>
-            <SearchBar HeightRequest="40" WidthRequest="300" BackgroundColor="#bde0fe" TextColor="Black" FontFamily="Insanibu" Text="{Binding Text}" SearchCommand="{Binding SearchCityCommand}" PlaceholderColor="Black" Placeholder="inserisci il comune"/>
+            <SearchBar HeightRequest="40" WidthRequest="300" BackgroundColor="#bde0fe" FontFamily="Insanibu" Text="{Binding Text}" SearchCommand="{Binding SearchCityCommand}" PlaceholderColor="Black" Placeholder="inserisci il comune"/>
             <ImageButton Source="geolocation.png" HeightRequest="50" WidthRequest="50" Command="{Binding GetCurrentLocationCommand}"/>
         </HorizontalStackLayout>
 
-        <Button HeightRequest="60" Margin="0,40,0,40" Text="Metti nei preferiti" Command="{Binding PlaceInPreferencesCommand}" BackgroundColor="#bde0fe" FontSize="20" TextColor="Black" FontFamily="Insanibu" BorderColor="black" BorderWidth="1"/>
-        <Button HeightRequest="60" Text="vai ai dettagli" Command="{Binding GoToDetailsWithoutObjectCommand}" BackgroundColor="#bde0fe" TextColor="Black" FontSize="20" FontFamily="Insanibu" BorderColor="black" BorderWidth="1"/>
+        <Button HeightRequest="60" Margin="0,40,0,40" Text="Metti nei preferiti" Command="{Binding PlaceInPreferencesCommand}" BackgroundColor="#bde0fe" FontSize="20" FontFamily="Insanibu" BorderColor="black" BorderWidth="1"/>
+        <Button HeightRequest="60" Text="vai ai dettagli" Command="{Binding GoToDetailsWithoutObjectCommand}" BackgroundColor="#bde0fe" FontSize="20" FontFamily="Insanibu" BorderColor="black" BorderWidth="1"/>
 
-        <Label x:Name="foundCity" Margin="70,40,0,0" FontSize="30" Text="CITTA' TROVATA" IsVisible="{Binding State}" TextColor="Black" FontFamily="Insanibu"/>
+        <Label x:Name="foundCity" Margin="70,40,0,0" FontSize="30" Text="CITTA' TROVATA" IsVisible="{Binding State}" FontFamily="Insanibu"/>
     </VerticalStackLayout>
 </ContentPage>

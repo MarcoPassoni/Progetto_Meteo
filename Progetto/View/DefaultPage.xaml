@@ -13,7 +13,7 @@
 
     <VerticalStackLayout>
         <Label
-            Text="inserisci una città nelle preferiti: cerca -> città -> metti nei preferiti" TextColor="Black" FontSize="20" FontFamily="Insanibu" IsVisible="{Binding ThereIs}"/>
+            Text="inserisci una città nelle preferiti: cerca -> città -> metti nei preferiti" FontSize="20" FontFamily="Insanibu" IsVisible="{Binding ThereIs}"/>
         <CollectionView ItemsSource="{Binding PreferencesCities}">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="Model:Locations">
@@ -28,7 +28,7 @@
                                     Grid.Column="1"
                                     VerticalOptions="Center"
                                     Padding="10">
-                                <Label Text="{Binding Name, StringFormat='città: {0:F0}'}" TextColor="Black" FontSize="20" FontFamily="Insanibu"/>
+                                <Label Text="{Binding Name, StringFormat='città: {0:F0}'}" FontSize="20" FontFamily="Insanibu"/>
                             </VerticalStackLayout>
                         </Grid>
                     </Frame>
