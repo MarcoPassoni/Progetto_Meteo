@@ -194,6 +194,7 @@ namespace Progetto.ModelView
                     //await Task.Delay(1000);
                 }
             }
+            await Shell.Current.DisplayAlert("ERRORE", "la città inserita non è corretta", "ok");
         }
         public DateTime? UnixTimeStampToDateTime(double? unixTimeStamp)
         {
