@@ -192,6 +192,7 @@ namespace Progetto.ModelView
                     await Task.Delay(5000);
                     State = false;
                     //await Task.Delay(1000);
+                    return;
                 }
             }
             await Shell.Current.DisplayAlert("ERRORE", "la città inserita non è corretta", "ok");
