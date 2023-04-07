@@ -28,7 +28,7 @@ namespace Progetto.Model
                 return false;
             }
             Locations loc = (Locations)obj;
-            return Name.Equals(loc.Name) && Latitude.Equals(loc.Latitude) && Longitude.Equals(loc.Longitude);
+            return Name.Equals(loc.Name) || Latitude.Equals(loc.Latitude) && Longitude.Equals(loc.Longitude);
         }
     }
 }

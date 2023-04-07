@@ -21,7 +21,7 @@ namespace Progetto.ModelView
 
         private static HttpClient client = new HttpClient();
 
-        public ObservableCollection<Locations> PreferencesCities;
+        public ObservableCollection<Locations> PreferencesCities = new ObservableCollection<Locations>();
 
         [ObservableProperty]
         public Locations location;
@@ -53,16 +53,19 @@ namespace Progetto.ModelView
 
         public ModelViewDetails(Locations location)
         {
-            IsPreferences = false;
             Task.Run(async () =>
             {
                 Location = location;
                 await SearchWeather(location);
-                ViewWeather();
-                CreationVariable();
-                Deserialization();
-                ThisLocationIsInPreferences();
             }).Wait();
+
+            ViewWeather();
+            CreationVariable();
+            Deserialization();
+            if (PreferencesCities.Count() != 0)
+            {
+                ThisLocationIsInPreferences();
+            }
         }
         public void Deserialization()
         {

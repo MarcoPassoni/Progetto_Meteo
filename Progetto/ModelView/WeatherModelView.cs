@@ -98,7 +98,6 @@ namespace Progetto.ModelView
         {
             try
             {
-                // Get cached location, else get real location.
                 var location = await Geolocation.Default.GetLastKnownLocationAsync();
                 if (location == null)
                 {
