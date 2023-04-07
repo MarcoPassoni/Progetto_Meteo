@@ -4,7 +4,6 @@
              x:Class="Progetto.View.DefaultPage"
              xmlns:ViewModel="clr-namespace:Progetto.ModelView"
              xmlns:Model="clr-namespace:Progetto.Model"
-             BackgroundColor="#a2d2ff"
              Padding="5">
     
     <ContentPage.BindingContext>

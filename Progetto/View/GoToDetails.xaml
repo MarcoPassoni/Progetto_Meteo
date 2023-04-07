@@ -6,7 +6,6 @@
              xmlns:Model="clr-namespace:Progetto.Model"
              x:DataType="ViewModel:ModelViewDetails"
              Title="{Binding Location.Name}"
-             BackgroundColor="#a2d2ff"
              Padding="8"
              >
 
