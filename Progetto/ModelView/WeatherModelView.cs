@@ -46,7 +46,7 @@ namespace Progetto.ModelView
             Preferiti();
         }
 
-        public void Preferiti()
+        public async Task Preferiti()
         {
             string path = FileSystem.AppDataDirectory + "/preferencesCities.json";
             if (File.Exists(path))
@@ -71,6 +71,7 @@ namespace Progetto.ModelView
         {
             if (loc == null || loc == default)
             {
+                await Shell.Current.DisplayAlert("ERRORE", "le preferenze della città inserita non sono visibili", "ok");
                 return;
             }
             CurrentLocation = (Locations)loc;
@@ -84,6 +85,7 @@ namespace Progetto.ModelView
         {
             if (CurrentLocation == null)
             {
+                await Shell.Current.DisplayAlert("ERRORE", "le preferenze della città inserita non sono visibili", "ok");
                 return;
             }
             ModelViewDetails viewDetails = new ModelViewDetails(CurrentLocation);
@@ -129,6 +131,7 @@ namespace Progetto.ModelView
         {
             if (Text == null || Text == string.Empty)
             {
+                await Shell.Current.DisplayAlert("ERRORE", "la città inserita non è corretta o incompleta", "ok");
                 return;
             }
             await GeoCod(Text);
@@ -137,8 +140,10 @@ namespace Progetto.ModelView
         [RelayCommand]
         public async Task PlaceInPreferences()
         {
+            await Preferiti();
             if (PreferencesCities.Contains(CurrentLocation) || CurrentLocation == null || CurrentLocation == default)
             {
+                await Shell.Current.DisplayAlert("ERRORE", "la città inserita non può essere messa nei preferiti", "ok");
                 return;
             }
 
@@ -146,7 +151,8 @@ namespace Progetto.ModelView
             string path = FileSystem.AppDataDirectory + "/preferencesCities.json";
             var json = JsonSerializer.Serialize(PreferencesCities);
             await File.WriteAllTextAsync(path, json);
-            Preferiti();
+            await Shell.Current.DisplayAlert("AVVISO", "la città è stata inserita nei preferiti", "ok");
+            await Preferiti();
         }
 
         private async Task RemoveInPreference(Locations loc)
@@ -155,7 +161,8 @@ namespace Progetto.ModelView
             string path = FileSystem.AppDataDirectory + "/preferencesCities.json";
             var json = JsonSerializer.Serialize(PreferencesCities);
             await File.WriteAllTextAsync(path, json);
-            Preferiti();
+            await Shell.Current.DisplayAlert("AVVISO", "la città selezionata è stata rimossa dai preferiti", "ok");
+            await Preferiti();
         }
 
         public async void SearchWeather(Locations CurrentLocation)
@@ -195,7 +202,7 @@ namespace Progetto.ModelView
                     return;
                 }
             }
-            await Shell.Current.DisplayAlert("ERRORE", "la città inserita non è corretta", "ok");
+            await Shell.Current.DisplayAlert("ERRORE", "la città inserita non è corretta o incompleta", "ok");
         }
         public DateTime? UnixTimeStampToDateTime(double? unixTimeStamp)
         {

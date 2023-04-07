@@ -2,7 +2,6 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Progetto.View.ViewTheDay"
-             Title="{Binding Clicked.Time,  StringFormat='{0:dd MMMM}'}"
              xmlns:ViewModel="clr-namespace:Progetto.ModelView"
              xmlns:Model="clr-namespace:Progetto.Model"
              x:DataType="ViewModel:ModelViewDetails"
@@ -12,6 +11,17 @@
     <ContentPage.Behaviors>
         <mct:StatusBarBehavior StatusBarColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}"/>
     </ContentPage.Behaviors>
+    
+    <Shell.TitleView>
+        <Grid>
+            <Label 
+        Text="{Binding Clicked.Time,  StringFormat='{0:dd MMMM}'}"
+        HorizontalOptions="Start"
+        VerticalOptions="Center"
+        FontSize="Title"
+        FontFamily="Insanibu"/>
+        </Grid>
+    </Shell.TitleView>
     
     <ScrollView>
         <Grid ColumnDefinitions="*,auto" RowDefinitions="*,*,*,*,*,*,*,*,*,*" Grid.RowSpan="50" HeightRequest="800">

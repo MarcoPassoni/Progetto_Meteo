@@ -2,12 +2,22 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Progetto.View.ViewTheWeek"
-             Title="{Binding Location.Name, StringFormat='Settimana a {0}'}"
              xmlns:ViewModel="clr-namespace:Progetto.ModelView"
              xmlns:Model="clr-namespace:Progetto.Model"
              x:DataType="ViewModel:ModelViewDetails"
              Padding="5"
               xmlns:mct="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui">
+
+    <Shell.TitleView>
+        <Grid>
+            <Label 
+        Text="{Binding Location.Name, StringFormat='Settimana a {0}'}"
+        HorizontalOptions="Start"
+        VerticalOptions="Center"
+        FontSize="Title"
+        FontFamily="Insanibu"/>
+        </Grid>
+    </Shell.TitleView>
     
     <ContentPage.Behaviors>
         <mct:StatusBarBehavior StatusBarColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}"/>

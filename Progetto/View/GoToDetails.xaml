@@ -5,13 +5,24 @@
              xmlns:ViewModel="clr-namespace:Progetto.ModelView"
              xmlns:Model="clr-namespace:Progetto.Model"
              x:DataType="ViewModel:ModelViewDetails"
-             Title="{Binding Location.Name, StringFormat={StaticResource TitleStyle}}"
              Padding="8"
              xmlns:mct="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui">
-
+    
+    <Shell.TitleView>
+        <Grid>
+            <Label 
+        Text="{Binding Location.Name}"
+        HorizontalOptions="Start"
+        VerticalOptions="Center"
+        FontSize="Title"
+        FontFamily="Insanibu"/>
+        </Grid>
+    </Shell.TitleView>
+    
     <ContentPage.Behaviors>
         <mct:StatusBarBehavior StatusBarColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}"/>
     </ContentPage.Behaviors>
+    
     
     <VerticalStackLayout>
         <Grid ColumnDefinitions="*,*" RowDefinitions="*,*,*,*,*" RowSpacing="15">

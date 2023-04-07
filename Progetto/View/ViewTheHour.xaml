@@ -2,13 +2,23 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Progetto.View.ViewTheHour"
-             Title="{Binding ClickedHour.Time, StringFormat='ore {0:HH:00}'}"
              xmlns:ViewModel="clr-namespace:Progetto.ModelView"
              xmlns:Model="clr-namespace:Progetto.Model"
              x:DataType="ViewModel:ModelViewDetails"
              Padding="8"
              xmlns:mct="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui">
 
+    <Shell.TitleView>
+        <Grid>
+            <Label 
+        Text="{Binding ClickedHour.Time, StringFormat='ore {0:HH:00}'}"
+        HorizontalOptions="Start"
+        VerticalOptions="Center"
+        FontSize="Title"
+        FontFamily="Insanibu"/>
+        </Grid>
+    </Shell.TitleView>
+    
     <ContentPage.Behaviors>
         <mct:StatusBarBehavior StatusBarColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}"/>
     </ContentPage.Behaviors>

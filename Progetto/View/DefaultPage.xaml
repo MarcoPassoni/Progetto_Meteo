@@ -5,9 +5,19 @@
              xmlns:ViewModel="clr-namespace:Progetto.ModelView"
              xmlns:Model="clr-namespace:Progetto.Model"
              Padding="5"
-             Title="Preferiti"
              xmlns:mct="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui">
 
+    <Shell.TitleView>
+        <Grid>
+            <Label 
+        Text="preferiti"
+        HorizontalOptions="Start"
+        VerticalOptions="Center"
+        FontSize="Title"
+        FontFamily="Insanibu"/>
+        </Grid>
+    </Shell.TitleView>
+    
     <ContentPage.Behaviors>
         <mct:StatusBarBehavior StatusBarColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}"/>
     </ContentPage.Behaviors>
