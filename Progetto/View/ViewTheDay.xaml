@@ -38,7 +38,7 @@
             <Image Source="vento.png" HeightRequest="35" WidthRequest="35" HorizontalOptions="End" Grid.Row="7" VerticalOptions="Center"/>
 
             
-            <Button Text="guarda le ore" Command="{Binding ViewWeatherForHourCommand}" Margin="0,50,0,0" Grid.Row="8" VerticalOptions="Center" FontFamily="Insanibu" FontSize="20" HeightRequest="65" BackgroundColor="#bde0fe" BorderColor="Black" BorderWidth="1" CommandParameter="{Binding Clicked}"/>
+            <Button Text="guarda le ore" Command="{Binding ViewWeatherForHourCommand}" Margin="0,50,0,0" Grid.Row="8" VerticalOptions="Center" FontFamily="Insanibu" FontSize="20" HeightRequest="65" BorderWidth="1" CommandParameter="{Binding Clicked}"/>
         </Grid>
     </ScrollView>
 </ContentPage>

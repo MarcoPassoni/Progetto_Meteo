@@ -29,8 +29,8 @@
 
         </Grid>
         <VerticalStackLayout>
-            <Button Text="togli dai preferiti" Command="{Binding RemoveInPreferencesCommand}" FontSize="30" FontFamily="Insanibu" BackgroundColor="#bde0fe" Margin="0,25,0,0" BorderColor="black" BorderWidth="1"/>
-            <Button Text="guarda tempo settimana" Command="{Binding ViewTheWeekCommand}" FontSize="30" FontFamily="Insanibu" BackgroundColor="#bde0fe" Margin="0,25,0,0" BorderColor="black" BorderWidth="1"/>
+            <Button Text="togli dai preferiti" Command="{Binding RemoveInPreferencesCommand}" FontSize="30" FontFamily="Insanibu" Margin="0,25,0,0" BorderWidth="1"/>
+            <Button Text="guarda tempo settimana" Command="{Binding ViewTheWeekCommand}" FontSize="30" FontFamily="Insanibu" Margin="0,25,0,0" BorderWidth="1"/>
         </VerticalStackLayout>
     </VerticalStackLayout>
 

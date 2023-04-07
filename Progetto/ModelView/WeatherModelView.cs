@@ -43,6 +43,11 @@ namespace Progetto.ModelView
 
         public WeatherModelView()
         {
+            Preferiti();
+        }
+
+        public void Preferiti()
+        {
             string path = FileSystem.AppDataDirectory + "/preferencesCities.json";
             if (File.Exists(path))
             {
@@ -58,6 +63,7 @@ namespace Progetto.ModelView
                 ThereIs = true;
                 return;
             }
+            ThereIs = false;
         }
 
         [RelayCommand]
@@ -140,6 +146,7 @@ namespace Progetto.ModelView
             string path = FileSystem.AppDataDirectory + "/preferencesCities.json";
             var json = JsonSerializer.Serialize(PreferencesCities);
             File.WriteAllText(path, json);
+            Preferiti();
         }
 
         private async Task RemoveInPreference(Locations loc)
@@ -148,6 +155,7 @@ namespace Progetto.ModelView
             string path = FileSystem.AppDataDirectory + "/preferencesCities.json";
             var json = JsonSerializer.Serialize(PreferencesCities);
             await File.WriteAllTextAsync(path, json);
+            Preferiti();
         }
 
         public async void SearchWeather(Locations CurrentLocation)

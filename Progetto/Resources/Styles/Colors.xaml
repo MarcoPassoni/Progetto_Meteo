@@ -18,9 +18,9 @@
     <Color x:Key="Gray900">#212121</Color>
     <Color x:Key="Gray950">#141414</Color>
     <Color x:Key="DarkBackground">#2271B3</Color>
-    <Color x:Key="DarkFrame">#0087cb</Color>
-    <Color x:Key="LightFrame">#bde0fe</Color>
-    <Color x:Key="LightBackground">#a2d2ff</Color>
+    <Color x:Key="DarkFrame">#0087CB</Color>
+    <Color x:Key="LightFrame">#BDE0FE</Color>
+    <Color x:Key="LightBackground">#A2D2FF</Color>
     
     <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource Primary}"/>
     <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource Secondary}"/>

@@ -11,7 +11,7 @@
     <CollectionView ItemsSource="{Binding Clicked.hourlies}">
         <CollectionView.ItemTemplate>
             <DataTemplate x:DataType="Model:Ore">
-                <Frame BackgroundColor="#bde0fe" Margin="0,15,0,0">
+                <Frame Margin="0,15,0,0">
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer
                         Command="{Binding Source={RelativeSource AncestorType={x:Type ViewModel:ModelViewDetails}}, Path=ViewTheHourCommand}"

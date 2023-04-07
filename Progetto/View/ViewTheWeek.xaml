@@ -11,7 +11,7 @@
     <CollectionView ItemsSource="{Binding DailyMeteo}">
         <CollectionView.ItemTemplate>
             <DataTemplate x:DataType="Model:DailyMeteo">
-                <Frame BackgroundColor="#bde0fe" Margin="0,20,0,0">
+                <Frame Margin="0,20,0,0">
                     <Frame.GestureRecognizers>
                         <TapGestureRecognizer
                         Command="{Binding Source={RelativeSource AncestorType={x:Type ViewModel:ModelViewDetails}}, Path=ViewTheDayCommand}"
