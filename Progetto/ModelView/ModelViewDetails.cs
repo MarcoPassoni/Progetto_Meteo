@@ -16,9 +16,12 @@ namespace Progetto.ModelView
     public partial class ModelViewDetails : ObservableObject
     {
         public delegate Task RemoveHandler(Locations loc);
+
         public event RemoveHandler Remove;
 
         private static HttpClient client = new HttpClient();
+
+        public ObservableCollection<Locations> PreferencesCities;
 
         [ObservableProperty]
         public Locations location;
@@ -43,18 +46,40 @@ namespace Progetto.ModelView
         [ObservableProperty]
         public string weather;
 
+        [ObservableProperty]
+        public bool isPreferences = false;
+
         //public ObservableCollection<Ore> HourList { get; set; } = new ObservableCollection<Ore>(24);
 
         public ModelViewDetails(Locations location)
         {
-
+            IsPreferences = false;
             Task.Run(async () =>
             {
                 Location = location;
                 await SearchWeather(location);
                 ViewWeather();
                 CreationVariable();
+                Deserialization();
+                ThisLocationIsInPreferences();
             }).Wait();
+        }
+        public void Deserialization()
+        {
+            string path = FileSystem.AppDataDirectory + "/preferencesCities.json";
+            if (File.Exists(path))
+            {
+                PreferencesCities = JsonSerializer.Deserialize<ObservableCollection<Locations>>(File.ReadAllText(path));
+            }
+        }
+        public void ThisLocationIsInPreferences()
+        {
+            if (!(PreferencesCities.ToList().Contains(Location)))
+            {
+                IsPreferences = false;
+                return;
+            }
+            IsPreferences = true;
         }
 
         public DateTime UnixTimeStampToDateTime(double? unixTimeStamp)
@@ -142,7 +167,6 @@ namespace Progetto.ModelView
         #endregion
 
         
-
         public void CreationVariable()
         {
             DailyMeteo.Clear();

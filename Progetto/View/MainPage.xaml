@@ -19,9 +19,10 @@
             <ImageButton Source="geolocation.png" HeightRequest="50" WidthRequest="50" Command="{Binding GetCurrentLocationCommand}"/>
         </HorizontalStackLayout>
 
-        <Button HeightRequest="60" Margin="0,40,0,40" Text="Metti nei preferiti" Command="{Binding PlaceInPreferencesCommand}" FontSize="20" FontFamily="Insanibu" BorderWidth="1"/>
-        <Button HeightRequest="60" Text="vai ai dettagli" Command="{Binding GoToDetailsWithoutObjectCommand}" FontSize="20" FontFamily="Insanibu" BorderWidth="1"/>
+        <Button HeightRequest="60" Margin="0,40,0,40" Text="Metti nei preferiti" Command="{Binding PlaceInPreferencesCommand}" FontSize="20" FontFamily="Insanibu"/>
+        <Button HeightRequest="60" Text="vai ai dettagli" Command="{Binding GoToDetailsWithoutObjectCommand}" FontSize="20" FontFamily="Insanibu"/>
 
         <Label x:Name="foundCity" Margin="70,40,0,0" FontSize="30" Text="CITTA' TROVATA" IsVisible="{Binding State}" FontFamily="Insanibu"/>
+        <Label Margin="70,40,0,0" FontSize="30" Text="{Binding CurrentLocation.Name}" FontFamily="Insanibu"/>
     </VerticalStackLayout>
 </ContentPage>

@@ -136,16 +136,17 @@ namespace Progetto.ModelView
         }
 
         [RelayCommand]
-        public void PlaceInPreferences()
+        public async Task PlaceInPreferences()
         {
-            if (PreferencesCities.Contains(CurrentLocation) || CurrentLocation == null || currentLocation == default)
+            if (PreferencesCities.Contains(CurrentLocation) || CurrentLocation == null || CurrentLocation == default)
             {
                 return;
             }
+
             PreferencesCities.Add(CurrentLocation);
             string path = FileSystem.AppDataDirectory + "/preferencesCities.json";
             var json = JsonSerializer.Serialize(PreferencesCities);
-            File.WriteAllText(path, json);
+            await File.WriteAllTextAsync(path, json);
             Preferiti();
         }
 
@@ -185,7 +186,7 @@ namespace Progetto.ModelView
             if (responseGeocoding.IsSuccessStatusCode)
             {
                 GeoCoding? geocodingResult = await responseGeocoding.Content.ReadFromJsonAsync<GeoCoding>();
-                if (geocodingResult != null)
+                if (geocodingResult != null && geocodingResult.Results != null)
                 {
                     CurrentLocation = new Locations() { Name = geocodingResult.Results[0].Name, Latitude = geocodingResult.Results[0].Latitude, Longitude = geocodingResult.Results[0].Longitude };
                     State = true;

@@ -14,9 +14,9 @@
     </Style>
 
     <Style TargetType="Border">
-        <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray500}}" />
+        <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource DarkFrame}, Dark={StaticResource LightFrame}}"/>
         <Setter Property="StrokeShape" Value="Rectangle"/>
-        <Setter Property="StrokeThickness" Value="1"/>
+        <Setter Property="StrokeThickness" Value="20"/>
     </Style>
 
     <Style TargetType="BoxView">
@@ -29,6 +29,8 @@
         <Setter Property="FontFamily" Value="OpenSansRegular"/>
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="CornerRadius" Value="8"/>
+        <Setter Property="BorderColor" Value="Transparent"/>
+        <Setter Property="BorderWidth" Value="3"/>
         <Setter Property="Padding" Value="14,10"/>
         <Setter Property="MinimumHeightRequest" Value="44"/>
         <Setter Property="MinimumWidthRequest" Value="44"/>
@@ -40,6 +42,8 @@
                         <VisualState.Setters>
                             <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" />
                             <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightFrame}, Dark={StaticResource DarkFrame}}" />
+                            <Setter Property="BorderColor"  Value="{AppThemeBinding Light={StaticResource LightFrame}, Dark={StaticResource DarkFrame}}" />
+                            <Setter Property="BorderWidth" Value="3"/>
                         </VisualState.Setters>
                     </VisualState>
                 </VisualStateGroup>
@@ -132,7 +136,8 @@
 
     <Style TargetType="Frame">
         <Setter Property="HasShadow" Value="False" />
-        <Setter Property="BorderColor" Value="{AppThemeBinding Light={StaticResource DarkFrame}, Dark={StaticResource LightFrame}}" />
+
+        <Setter Property="BorderColor" Value="Transparent"/>
         <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightFrame}, Dark={StaticResource DarkFrame}}" />
         <Setter Property="CornerRadius" Value="8" />
     </Style>
@@ -385,15 +390,15 @@
         <Setter Property="Shell.UnselectedColor" Value="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray200}}" />
         <Setter Property="Shell.NavBarHasShadow" Value="False" />
         <Setter Property="Shell.TabBarBackgroundColor" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}" />
-        <Setter Property="Shell.TabBarForegroundColor" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}" />
-        <Setter Property="Shell.TabBarTitleColor" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}" />
-        <Setter Property="Shell.TabBarUnselectedColor" Value="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray200}}" />
+        <Setter Property="Shell.TabBarForegroundColor" Value="{AppThemeBinding Light={StaticResource DarkBackground}, Dark={StaticResource LightBackground}}"/>
+        <Setter Property="Shell.TabBarTitleColor" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" />
+        <Setter Property="Shell.TabBarUnselectedColor" Value="{AppThemeBinding Light={StaticResource DarkBackground}, Dark={StaticResource LightBackground}}"/>
     </Style>
 
     <Style TargetType="NavigationPage">
         <Setter Property="BarBackgroundColor" Value="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}" />
-        <Setter Property="BarTextColor" Value="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}"/>
-        <Setter Property="IconColor" Value="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource White}}" />
+        <Setter Property="BarTextColor" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
+        <Setter Property="IconColor" Value="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource White}}"/>
     </Style>
 
     <Style TargetType="TabbedPage">
